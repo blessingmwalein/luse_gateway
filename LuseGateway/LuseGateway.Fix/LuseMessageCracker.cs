@@ -33,9 +33,9 @@ namespace LuseGateway.Fix
                 string execType = message.ExecType.Value.ToString();
                 string ordStatus = message.OrdStatus.Value.ToString();
                 decimal lastQty = message.IsSetLastQty() ? message.LastQty.Value : 0;
-                decimal lastPx = message.IsSetLastPx() ? message.LastPx.Value : 0;
+                double lastPx = message.IsSetLastPx() ? (double)message.LastPx.Value : 0;
                 decimal cumQty = message.IsSetCumQty() ? message.CumQty.Value : 0;
-                decimal leavesQty = message.IsSetLeavesQty() ? message.LeavesQty.Value : 0;
+                string leavesQty = message.IsSetLeavesQty() ? message.LeavesQty.Value.ToString() : "0";
                 string exchangeOrderId = message.IsSetOrderID() ? message.OrderID.Value : "";
 
                 orderService.ProcessExecutionReportAsync(clOrdId, execType, ordStatus, lastQty, lastPx, cumQty, leavesQty, exchangeOrderId).GetAwaiter().GetResult();
@@ -59,7 +59,7 @@ namespace LuseGateway.Fix
                 
                 string clOrdId = group.IsSetClOrdID() ? group.ClOrdID.Value : "";
                 decimal lastQty = message.LastQty.Value;
-                decimal lastPx = message.LastPx.Value;
+                double lastPx = (double)message.LastPx.Value;
                 string side = group.Side.Value == QuickFix.Fields.Side.BUY ? "BUY" : "SELL";
                 string account = group.Account.Value;
                 DateTime matchedDate = DateTime.ParseExact(message.TradeDate.Value, "yyyyMMdd", null);
@@ -83,16 +83,16 @@ namespace LuseGateway.Fix
                 string symbol = message.Symbol.Value;
                 string securityType = message.IsSetSecurityType() ? message.SecurityType.Value : "";
                 
-                decimal? bid = null;
-                decimal? ask = null;
-                decimal? vwap = null;
+                double? bid = null;
+                double? ask = null;
+                double? vwap = null;
 
                 var entryGroup = new MarketDataSnapshotFullRefresh.NoMDEntriesGroup();
                 for (int i = 1; i <= message.NoMDEntries.Value; i++)
                 {
                     message.GetGroup(i, entryGroup);
                     char type = entryGroup.MDEntryType.Value;
-                    decimal px = entryGroup.MDEntryPx.Value;
+                    double px = (double)entryGroup.MDEntryPx.Value;
 
                     if (type == QuickFix.Fields.MDEntryType.BID) bid = px;
                     else if (type == QuickFix.Fields.MDEntryType.OFFER) ask = px;

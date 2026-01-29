@@ -9,7 +9,7 @@ namespace LuseGateway.Core.Models
     {
         [Key]
         [Column("orderno")]
-        public decimal OrderNo { get; set; }
+        public long OrderNo { get; set; }
 
         [Column("OrderNumber")]
         [StringLength(50)]
@@ -40,10 +40,10 @@ namespace LuseGateway.Core.Models
         public string Trader { get; set; }
 
         [Column("Quantity")]
-        public decimal Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [Column("BasePrice")]
-        public decimal BasePrice { get; set; }
+        public double BasePrice { get; set; }
 
         [Column("Side")]
         [StringLength(10)]
@@ -84,10 +84,10 @@ namespace LuseGateway.Core.Models
         [Column("MatchedPrice")]
         public decimal? MatchedPrice { get; set; }
         
-        [Column("LeavesQuantity")]
-        public decimal? LeavesQuantity { get; set; }
+        [Column("leavesQuantity")]
+        public string? LeavesQuantity { get; set; }
         
         [Column("RejectionReason")]
-        public string RejectionReason { get; set; }
+        public string? RejectionReason { get; set; }
     }
 }

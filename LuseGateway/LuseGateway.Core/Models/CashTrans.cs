@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LuseGateway.Core.Models
 {
-    // Note: This table resides in the [cds] database
-    [Table("CashTrans", Schema = "cds.dbo")]
+    // Note: This table resides in the [cdsc] database
+    [Table("CashTrans", Schema = "cdsc.dbo")]
     public class CashTrans
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Column("Description")]
         public string Description { get; set; }

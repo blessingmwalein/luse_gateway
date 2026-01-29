@@ -23,7 +23,7 @@ namespace LuseGateway.Core.Services
             
             if (billing != null)
             {
-                return amount * billing.PercentageOrValue;
+                return amount * (decimal)billing.PercentageOrValue;
             }
 
             // Fallback to 1.5% if not found in DB (based on legacy logic observation)

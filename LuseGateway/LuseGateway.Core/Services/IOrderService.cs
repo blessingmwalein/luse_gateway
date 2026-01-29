@@ -7,11 +7,11 @@ namespace LuseGateway.Core.Services
     public interface IOrderService
     {
         Task<IEnumerable<PreOrderLive>> GetPendingOrdersAsync();
-        Task MarkAsPostedAsync(decimal orderNo);
+        Task MarkAsPostedAsync(long orderNo);
         Task UpdateOrderStatusAsync(string clOrdId, string status, string exchangeOrderId = null, string rejectionReason = null);
-        Task ProcessExecutionReportAsync(string clOrdId, string execType, string ordStatus, decimal lastQty, decimal lastPx, decimal cumQty, decimal leavesQty, string exchangeOrderId);
-        Task ProcessTradeCaptureReportAsync(string clOrdId, decimal lastQty, decimal lastPx, string side, string account, DateTime matchedDate);
-        Task UpdateMarketPriceAsync(string symbol, decimal? bid, decimal? ask, decimal? lastPx, string securityType);
+        Task ProcessExecutionReportAsync(string clOrdId, string execType, string ordStatus, decimal lastQty, double lastPx, decimal cumQty, string leavesQty, string exchangeOrderId);
+        Task ProcessTradeCaptureReportAsync(string clOrdId, decimal lastQty, double lastPx, string side, string account, DateTime matchedDate);
+        Task UpdateMarketPriceAsync(string symbol, double? bid, double? ask, double? lastPx, string securityType);
         Task UpsertSecurityDefinitionAsync(string symbol, string securityId, string securityType, string isin);
         Task<IEnumerable<CompanyPrice>> GetCompanyPricesAsync();
         Task<Dictionary<string, int>> GetOrderStatsAsync();

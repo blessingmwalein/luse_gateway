@@ -22,10 +22,8 @@ namespace LuseGateway.Core.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Additional configurations if needed
-            modelBuilder.Entity<PreOrderLive>()
-                .Property(p => p.OrderNo)
-                .ValueGeneratedOnAdd();
+            // Configure CashTrans to point to cdsc database
+            modelBuilder.Entity<CashTrans>().ToTable("CashTrans", "cdsc.dbo");
         }
     }
 }

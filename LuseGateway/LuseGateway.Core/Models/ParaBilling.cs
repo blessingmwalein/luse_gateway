@@ -10,8 +10,14 @@ namespace LuseGateway.Core.Models
         [Column("ChargeName")]
         public string ChargeName { get; set; }
 
+        [Column("ChargeCode")]
+        public string? ChargeCode { get; set; }
+
+        [Column("ApplyTo")]
+        public string? ApplyTo { get; set; }
+
         [Column("percentageorvalue")]
-        public decimal PercentageOrValue { get; set; }
+        public double PercentageOrValue { get; set; }
 
         [Column("Amount")]
         public decimal? Amount { get; set; }

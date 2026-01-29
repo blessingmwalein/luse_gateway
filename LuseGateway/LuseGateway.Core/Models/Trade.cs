@@ -16,13 +16,13 @@ namespace LuseGateway.Core.Models
         public string SecurityId { get; set; }
 
         [Column("MatchedQuantity")]
-        public decimal MatchedQuantity { get; set; }
+        public string MatchedQuantity { get; set; }
 
         [Column("MatchedPrice")]
-        public decimal MatchedPrice { get; set; }
+        public string MatchedPrice { get; set; }
 
         [Column("GrossTradeAmount")]
-        public decimal GrossTradeAmount { get; set; }
+        public string GrossTradeAmount { get; set; }
 
         [Column("MatchedDate")]
         public DateTime MatchedDate { get; set; }

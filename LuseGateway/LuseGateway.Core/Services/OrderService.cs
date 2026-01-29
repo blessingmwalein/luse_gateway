@@ -30,7 +30,7 @@ namespace LuseGateway.Core.Services
                 .ToListAsync();
         }
 
-        public async Task MarkAsPostedAsync(decimal orderNo)
+        public async Task MarkAsPostedAsync(long orderNo)
         {
             var order = await _dbContext.PreOrders.FindAsync(orderNo);
             if (order != null)
@@ -56,7 +56,7 @@ namespace LuseGateway.Core.Services
             }
         }
 
-        public async Task ProcessExecutionReportAsync(string clOrdId, string execType, string ordStatus, decimal lastQty, decimal lastPx, decimal cumQty, decimal leavesQty, string exchangeOrderId)
+        public async Task ProcessExecutionReportAsync(string clOrdId, string execType, string ordStatus, decimal lastQty, double lastPx, decimal cumQty, string leavesQty, string exchangeOrderId)
         {
             using var transaction = await _dbContext.Database.BeginTransactionAsync();
             try
@@ -78,13 +78,13 @@ namespace LuseGateway.Core.Services
                 if (ordStatus == "1") order.LeavesQuantity = leavesQty;
                 if (ordStatus == "2")
                 {
-                    order.MatchedPrice = lastPx;
+                    order.MatchedPrice = (decimal)lastPx;
                     order.MatchedDate = DateTime.Now;
-                    order.LeavesQuantity = 0;
+                    order.LeavesQuantity = "0";
                 }
 
                 // 2. Sync to Live_Orders (Legacy requirement)
-                await SyncToLiveOrdersAsync(order, internalStatus, leavesQty);
+                await SyncToLiveOrdersAsync(order, internalStatus, lastQty);
 
                 // 3. Handle Special Logic (Refunds for Rejection/Cancellation)
                 if (ordStatus == "8" || ordStatus == "4") // Rejected or Cancelled
@@ -125,7 +125,7 @@ namespace LuseGateway.Core.Services
                 SecurityType = order.SecurityType,
                 CreateDate = DateTime.Now,
                 OrderStatus = status,
-                Quantity = qty > 0 ? qty : order.Quantity,
+                Quantity = qty > 0 ? (double)qty : (double)order.Quantity,
                 BasePrice = order.BasePrice,
                 TimeInForce = order.TimeInForce,
                 MaturityDate = order.ExpiryDate,
@@ -144,15 +144,15 @@ namespace LuseGateway.Core.Services
             if (order.Side == "BUY")
             {
                 // Legacy calculation: qnt * pric * 1.015 (1.5% fee refund)
-                decimal chargeRate = await _billingService.CalculateLuseChargesAsync(order.Quantity * order.BasePrice);
-                decimal refundAmount = (order.Quantity * order.BasePrice) + chargeRate;
+                decimal chargeRate = await _billingService.CalculateLuseChargesAsync((decimal)(order.Quantity * order.BasePrice));
+                decimal refundAmount = (decimal)(order.Quantity * order.BasePrice) + chargeRate;
 
                 await _billingService.ProcessRefundAsync(order.CdsAccount, order.BrokerRef, refundAmount);
                 _logger.LogInformation("Processed refund for order {OrderNo}", order.OrderNo);
             }
         }
 
-        public async Task ProcessTradeCaptureReportAsync(string clOrdId, decimal lastQty, decimal lastPx, string side, string account, DateTime matchedDate)
+        public async Task ProcessTradeCaptureReportAsync(string clOrdId, decimal lastQty, double lastPx, string side, string account, DateTime matchedDate)
         {
             var order = await _dbContext.PreOrders
                 .OrderByDescending(o => o.OrderNo)
@@ -165,9 +165,9 @@ namespace LuseGateway.Core.Services
                 var trade = new Trade
                 {
                     SecurityId = order?.Company,
-                    MatchedQuantity = lastQty,
-                    MatchedPrice = lastPx,
-                    GrossTradeAmount = lastQty * lastPx,
+                    MatchedQuantity = lastQty.ToString(),
+                    MatchedPrice = lastPx.ToString(),
+                    GrossTradeAmount = (lastQty * (decimal)lastPx).ToString(),
                     MatchedDate = matchedDate,
                     OrderNumber = clOrdId,
                     TradingAccount = account,
@@ -179,7 +179,7 @@ namespace LuseGateway.Core.Services
                 if (order != null && order.OrderStatus != "MATCHED ORDER")
                 {
                     order.OrderStatus = "MATCHED ORDER";
-                    order.MatchedPrice = lastPx;
+                    order.MatchedPrice = (decimal)lastPx;
                     order.MatchedDate = matchedDate;
                 }
 
@@ -194,7 +194,7 @@ namespace LuseGateway.Core.Services
             }
         }
 
-        public async Task UpdateMarketPriceAsync(string symbol, decimal? bid, decimal? ask, decimal? lastPx, string securityType)
+        public async Task UpdateMarketPriceAsync(string symbol, double? bid, double? ask, double? lastPx, string securityType)
         {
             var price = await _dbContext.CompanyPrices.FindAsync(symbol);
             if (price == null)

@@ -14,40 +14,46 @@ namespace LuseGateway.Core.Models
 
         [Column("SecurityType")]
         [StringLength(20)]
-        public string SecurityType { get; set; }
+        public string? SecurityType { get; set; }
 
         [Column("BestBid")]
-        public decimal? BestBid { get; set; }
+        public double? BestBid { get; set; }
 
         [Column("BestAsk")]
-        public decimal? BestAsk { get; set; }
+        public double? BestAsk { get; set; }
 
         [Column("VwapPrice")]
-        public decimal? VwapPrice { get; set; }
+        public double? VwapPrice { get; set; }
 
         [Column("OpeningPrice")]
-        public decimal? OpeningPrice { get; set; }
+        public double? OpeningPrice { get; set; }
 
         [Column("ClosingPrice")]
-        public decimal? ClosingPrice { get; set; }
+        public double? ClosingPrice { get; set; }
 
         [Column("Settlementprice")]
-        public decimal? SettlementPrice { get; set; }
+        public double? SettlementPrice { get; set; }
 
         [Column("HighestPrice")]
-        public decimal? HighestPrice { get; set; }
+        public double? HighestPrice { get; set; }
 
         [Column("LowestPrice")]
-        public decimal? LowestPrice { get; set; }
+        public double? LowestPrice { get; set; }
 
         [Column("ShareVOL")]
-        public string ShareVolume { get; set; }
+        public double? ShareVolume { get; set; }
 
         [Column("Openinterest")]
-        public string OpenInterest { get; set; }
+        public double? OpenInterest { get; set; }
 
         [Column("maturitydate")]
         [StringLength(50)]
-        public string MaturityDate { get; set; }
+        public string? MaturityDate { get; set; }
+
+        [Column("previousdaysindex")]
+        public long? PreviousDaysIndex { get; set; }
+
+        [Column("weight")]
+        public long? Weight { get; set; }
     }
 }
