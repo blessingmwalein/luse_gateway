@@ -13,6 +13,10 @@ namespace LuseGateway.Core.Data
         public DbSet<PreOrderLive> PreOrders { get; set; }
         public DbSet<Trade> Trades { get; set; }
         public DbSet<CompanyPrice> CompanyPrices { get; set; }
+        public DbSet<LiveOrder> LiveOrders { get; set; }
+        public DbSet<CashTrans> CashTransactions { get; set; }
+        public DbSet<ParaBilling> ParaBillings { get; set; }
+        public DbSet<ParaCompany> ParaCompanies { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

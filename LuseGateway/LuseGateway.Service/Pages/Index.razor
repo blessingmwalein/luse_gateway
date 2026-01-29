@@ -64,6 +64,35 @@
                 }
             </div>
         </div>
+
+        <div class="glass-card mt-4">
+            <h3>Market Data Feed (CompanyPrices)</h3>
+            <div class="order-table-container">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Bid</th>
+                            <th>Ask</th>
+                            <th>VWAP</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var price in MarketPrices)
+                        {
+                            <tr>
+                                <td>@price.Company</td>
+                                <td class="text-success">@(price.BestBid?.ToString("N4") ?? "0.0000")</td>
+                                <td class="text-danger">@(price.BestAsk?.ToString("N4") ?? "0.0000")</td>
+                                <td class="text-accent">@(price.VwapPrice?.ToString("N4") ?? "0.0000")</td>
+                                <td class="small">@price.SecurityType</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <!-- Right Column: Actions & Stats -->
@@ -90,6 +119,10 @@
             <h3>Session Statistics</h3>
             <div class="stats-list">
                 <div class="stat-item">
+                    <span class="stat-label">Active Session:</span>
+                    <span class="stat-value text-accent">@(FixApp.ActiveSessionId?.ToString() ?? "NONE")</span>
+                </div>
+                <div class="stat-item">
                     <span class="stat-label">Messages In:</span>
                     <span class="stat-value">@LogMessages.Count(m => m.Direction == "IN")</span>
                 </div>
@@ -97,10 +130,14 @@
                     <span class="stat-label">Messages Out:</span>
                     <span class="stat-value">@LogMessages.Count(m => m.Direction == "OUT")</span>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">Active Session:</span>
-                    <span class="stat-value text-accent">@(FixApp.ActiveSessionId?.ToString() ?? "NONE")</span>
-                </div>
+                <hr class="border-secondary my-2" />
+                @foreach (var stat in OrderStats)
+                {
+                    <div class="stat-item">
+                        <span class="stat-label">@stat.Key:</span>
+                        <span class="stat-value badge @GetStatusBadgeClass(stat.Key)">@stat.Value</span>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -115,37 +152,56 @@
 
     private List<FixMessageEntry> LogMessages = new();
     private List<PreOrderLive> Orders = new();
+    private List<CompanyPrice> MarketPrices = new();
+    private Dictionary<string, int> OrderStats = new();
     private HubConnection? hubConnection;
     private string? DbError;
 
     protected override async Task OnInitializedAsync()
     {
         LogMessages = LogService.GetRecentMessages().ToList();
-        
-        try 
-        {
-            Orders = (await OrderService.GetPendingOrdersAsync()).Take(10).ToList();
-            DbError = null;
-        }
-        catch (Exception ex)
-        {
-            DbError = "Could not connect to database.";
-            // We still want the dashboard to load for FIX monitoring
-        }
+        await RefreshData();
 
         hubConnection = new HubConnectionBuilder()
             .WithUrl(Navigation.ToAbsoluteUri("/gatewayHub"))
             .Build();
 
-        hubConnection.On<FixMessageEntry>("ReceiveFixMessage", (message) =>
+        hubConnection.On<FixMessageEntry>("ReceiveFixMessage", async (message) =>
         {
             LogMessages.Insert(0, message);
             if (LogMessages.Count > 100) LogMessages.RemoveAt(LogMessages.Count - 1);
-            InvokeAsync(StateHasChanged);
+            
+            // Auto-refresh data on new messages
+            await RefreshData();
+            await InvokeAsync(StateHasChanged);
         });
 
         await hubConnection.StartAsync();
     }
+
+    private async Task RefreshData()
+    {
+        try 
+        {
+            Orders = (await OrderService.GetPendingOrdersAsync()).Take(5).ToList();
+            MarketPrices = (await OrderService.GetCompanyPricesAsync()).ToList();
+            OrderStats = await OrderService.GetOrderStatsAsync();
+            DbError = null;
+        }
+        catch (Exception ex)
+        {
+            DbError = "Could not connect to database.";
+        }
+    }
+
+    private string GetStatusBadgeClass(string status) => status.ToUpper() switch
+    {
+        "MATCHED ORDER" => "bg-success",
+        "REJECTED" => "bg-danger",
+        "OPEN" => "bg-info",
+        "NEW" => "bg-primary",
+        _ => "bg-secondary"
+    };
 
     private async Task RequestSecurityDefs() => await ActionService.RequestSecurityDefinitionsAsync();
     private async Task RequestMarketData() => await ActionService.RequestMarketDataAsync("MSFT");

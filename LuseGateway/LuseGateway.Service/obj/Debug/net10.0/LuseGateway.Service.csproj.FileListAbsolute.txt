@@ -164,11 +164,12 @@ C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\scopedcss\bundle\LuseGateway.Service.styles.css
-C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\compressed\3zzfgvtj8c-{0}-aral5krxdp-aral5krxdp.gz
-C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\compressed\wcf75g70e4-{0}-wmp8iwak4q-wmp8iwak4q.gz
-C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\compressed\gsvnkizuy2-{0}-2lgipwaf5j-2lgipwaf5j.gz
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\swae.build.ex.cache
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\LuseGateway.Service.sourcelink.json
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\compressed\wcf75g70e4-{0}-2i0r6wwb69-2i0r6wwb69.gz
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\compressed\gsvnkizuy2-{0}-iz83ucvm53-iz83ucvm53.gz
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Service\obj\Debug\net10.0\compressed\3zzfgvtj8c-{0}-mtuwx8zw0y-mtuwx8zw0y.gz

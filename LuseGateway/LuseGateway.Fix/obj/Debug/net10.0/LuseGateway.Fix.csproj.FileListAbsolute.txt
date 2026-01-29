@@ -13,3 +13,4 @@ C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\refint\LuseGateway.Fix.dll
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\LuseGateway.Fix.pdb
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\ref\LuseGateway.Fix.dll
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\LuseGateway.Fix.sourcelink.json

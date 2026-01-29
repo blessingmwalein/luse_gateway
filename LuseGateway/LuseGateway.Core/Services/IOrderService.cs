@@ -13,5 +13,7 @@ namespace LuseGateway.Core.Services
         Task ProcessTradeCaptureReportAsync(string clOrdId, decimal lastQty, decimal lastPx, string side, string account, DateTime matchedDate);
         Task UpdateMarketPriceAsync(string symbol, decimal? bid, decimal? ask, decimal? lastPx, string securityType);
         Task UpsertSecurityDefinitionAsync(string symbol, string securityId, string securityType, string isin);
+        Task<IEnumerable<CompanyPrice>> GetCompanyPricesAsync();
+        Task<Dictionary<string, int>> GetOrderStatsAsync();
     }
 }

@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "CDXEn3RKiaU=",
+  "dgSpecHash": "QjgcB9aBz2Q=",
   "success": true,
   "projectFilePath": "C:\\Users\\Blessing Mwale\\Documents\\Projects\\LUSE\\Gateway\\LuseGateway\\LuseGateway.Service\\LuseGateway.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Blessing Mwale\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Blessing Mwale\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
     "C:\\Users\\Blessing Mwale\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\Blessing Mwale\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.1\\microsoft.aspnetcore.app.internal.assets.10.0.1.nupkg.sha512",
+    "C:\\Users\\Blessing Mwale\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.2\\microsoft.aspnetcore.app.internal.assets.10.0.2.nupkg.sha512",
     "C:\\Users\\Blessing Mwale\\.nuget\\packages\\microsoft.aspnetcore.components.web\\10.0.2\\microsoft.aspnetcore.components.web.10.0.2.nupkg.sha512",
     "C:\\Users\\Blessing Mwale\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\10.0.2\\microsoft.aspnetcore.http.connections.client.10.0.2.nupkg.sha512",
     "C:\\Users\\Blessing Mwale\\.nuget\\packages\\microsoft.aspnetcore.signalr.client\\10.0.2\\microsoft.aspnetcore.signalr.client.10.0.2.nupkg.sha512",

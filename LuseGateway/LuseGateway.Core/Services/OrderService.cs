@@ -13,11 +13,13 @@ namespace LuseGateway.Core.Services
     {
         private readonly LuseDbContext _dbContext;
         private readonly ILogger<OrderService> _logger;
+        private readonly IBillingService _billingService;
 
-        public OrderService(LuseDbContext dbContext, ILogger<OrderService> logger)
+        public OrderService(LuseDbContext dbContext, ILogger<OrderService> logger, IBillingService billingService)
         {
             _dbContext = dbContext;
             _logger = logger;
+            _billingService = billingService;
         }
 
         public async Task<IEnumerable<PreOrderLive>> GetPendingOrdersAsync()
@@ -56,48 +58,98 @@ namespace LuseGateway.Core.Services
 
         public async Task ProcessExecutionReportAsync(string clOrdId, string execType, string ordStatus, decimal lastQty, decimal lastPx, decimal cumQty, decimal leavesQty, string exchangeOrderId)
         {
-            var order = await _dbContext.PreOrders
-                .OrderByDescending(o => o.OrderNo)
-                .FirstOrDefaultAsync(o => o.OrderNumber == clOrdId || o.ExchangeOrderNumber == clOrdId);
-
-            if (order == null)
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
             {
-                _logger.LogWarning("Order {ClOrdId} not found for ExecutionReport", clOrdId);
-                return;
-            }
+                var order = await _dbContext.PreOrders
+                    .OrderByDescending(o => o.OrderNo)
+                    .FirstOrDefaultAsync(o => o.OrderNumber == clOrdId || o.ExchangeOrderNumber == clOrdId);
 
-            order.ExchangeOrderNumber = exchangeOrderId;
+                if (order == null)
+                {
+                    _logger.LogWarning("Order {ClOrdId} not found for ExecutionReport", clOrdId);
+                    return;
+                }
 
-            // Map FIX ordStatus to internal status
-            // 0=New, 1=PartiallyFilled, 2=Filled, 4=Cancelled, 5=Replaced, 8=Rejected
-            switch (ordStatus)
-            {
-                case "0":
-                    order.OrderStatus = "NEW";
-                    break;
-                case "1":
-                    order.OrderStatus = "PARTIALLY MATCHED";
-                    order.LeavesQuantity = leavesQty;
-                    // Logic to handle partial matching residue if necessary
-                    break;
-                case "2":
-                    order.OrderStatus = "MATCHED ORDER";
+                order.ExchangeOrderNumber = exchangeOrderId;
+                string internalStatus = MapOrdStatus(ordStatus);
+                order.OrderStatus = internalStatus;
+
+                if (ordStatus == "1") order.LeavesQuantity = leavesQty;
+                if (ordStatus == "2")
+                {
                     order.MatchedPrice = lastPx;
                     order.MatchedDate = DateTime.Now;
                     order.LeavesQuantity = 0;
-                    break;
-                case "4":
-                    order.OrderStatus = "CANCELLED";
-                    break;
-                case "8":
-                    order.OrderStatus = "REJECTED";
-                    break;
-                default:
-                    order.OrderStatus = $"STATUS_{ordStatus}";
-                    break;
-            }
+                }
 
-            await _dbContext.SaveChangesAsync();
+                // 2. Sync to Live_Orders (Legacy requirement)
+                await SyncToLiveOrdersAsync(order, internalStatus, leavesQty);
+
+                // 3. Handle Special Logic (Refunds for Rejection/Cancellation)
+                if (ordStatus == "8" || ordStatus == "4") // Rejected or Cancelled
+                {
+                    await HandleOrderRefundAsync(order);
+                }
+
+                await _dbContext.SaveChangesAsync();
+                await transaction.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                _logger.LogError(ex, "Error processing ExecutionReport for {ClOrdId}", clOrdId);
+                throw;
+            }
+        }
+
+        private string MapOrdStatus(string fixStatus)
+        {
+            return fixStatus switch
+            {
+                "0" => "NEW",
+                "1" => "PARTIALLY MATCHED",
+                "2" => "MATCHED ORDER",
+                "4" => "CANCELLED",
+                "5" => "REPLACED",
+                "8" => "REJECTED",
+                _ => $"STATUS_{fixStatus}"
+            };
+        }
+
+        private async Task SyncToLiveOrdersAsync(PreOrderLive order, string status, decimal qty)
+        {
+            var liveOrder = new LiveOrder
+            {
+                Company = order.Symbol,
+                SecurityType = order.SecurityType,
+                CreateDate = DateTime.Now,
+                OrderStatus = status,
+                Quantity = qty > 0 ? qty : order.Quantity,
+                BasePrice = order.BasePrice,
+                TimeInForce = order.TimeInForce,
+                MaturityDate = order.ExpiryDate,
+                Side = order.Side,
+                OrderIdentifier = order.OrderNumber,
+                CdsAccount = order.CdsAccount,
+                BrokerCode = order.BrokerCode,
+                Trader = order.Trader,
+                OrderAttribute = order.OrderAttribute
+            };
+            _dbContext.LiveOrders.Add(liveOrder);
+        }
+
+        private async Task HandleOrderRefundAsync(PreOrderLive order)
+        {
+            if (order.Side == "BUY")
+            {
+                // Legacy calculation: qnt * pric * 1.015 (1.5% fee refund)
+                decimal chargeRate = await _billingService.CalculateLuseChargesAsync(order.Quantity * order.BasePrice);
+                decimal refundAmount = (order.Quantity * order.BasePrice) + chargeRate;
+
+                await _billingService.ProcessRefundAsync(order.CdsAccount, order.BrokerRef, refundAmount);
+                _logger.LogInformation("Processed refund for order {OrderNo}", order.OrderNo);
+            }
         }
 
         public async Task ProcessTradeCaptureReportAsync(string clOrdId, decimal lastQty, decimal lastPx, string side, string account, DateTime matchedDate)
@@ -160,9 +212,34 @@ namespace LuseGateway.Core.Services
 
         public async Task UpsertSecurityDefinitionAsync(string symbol, string securityId, string securityType, string isin)
         {
-            // Implementation for ParaCompany update if needed
-            // Currently using CompanyPrice as a proxy for security metadata in some cases
-            await UpdateMarketPriceAsync(symbol, null, null, null, securityType);
+            var paraCompany = await _dbContext.ParaCompanies.FindAsync(symbol);
+            if (paraCompany == null)
+            {
+                paraCompany = new ParaCompany { Symbol = symbol };
+                _dbContext.ParaCompanies.Add(paraCompany);
+            }
+
+            paraCompany.Company = securityId;
+            paraCompany.Fnam = symbol;
+            paraCompany.Exchange = "LUSE";
+            paraCompany.SecurityType = securityType;
+            paraCompany.DateCreated = DateTime.Now;
+            paraCompany.IsinNo = isin;
+
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<CompanyPrice>> GetCompanyPricesAsync()
+        {
+            return await _dbContext.CompanyPrices.ToListAsync();
+        }
+
+        public async Task<Dictionary<string, int>> GetOrderStatsAsync()
+        {
+            return await _dbContext.PreOrders
+                .GroupBy(o => o.OrderStatus)
+                .Select(g => new { Status = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.Status ?? "UNKNOWN", x => x.Count);
         }
     }
 }

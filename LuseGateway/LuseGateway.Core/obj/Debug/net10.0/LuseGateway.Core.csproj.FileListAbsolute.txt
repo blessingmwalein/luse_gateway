@@ -12,3 +12,4 @@ C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Core\obj\Debug\net10.0\LuseGateway.Core.pdb
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Core\obj\Debug\net10.0\LuseGateway.Core.genruntimeconfig.cache
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Core\obj\Debug\net10.0\ref\LuseGateway.Core.dll
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Core\obj\Debug\net10.0\LuseGateway.Core.sourcelink.json
