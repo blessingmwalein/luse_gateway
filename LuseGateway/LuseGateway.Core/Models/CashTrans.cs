@@ -12,10 +12,10 @@ namespace LuseGateway.Core.Models
         public long Id { get; set; }
 
         [Column("Description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Column("TransType")]
-        public string TransType { get; set; }
+        public string? TransType { get; set; }
 
         [Column("Amount")]
         public decimal Amount { get; set; }
@@ -23,10 +23,19 @@ namespace LuseGateway.Core.Models
         [Column("DateCreated")]
         public DateTime DateCreated { get; set; }
 
+        [Column("TransStatus")]
+        public string? TransStatus { get; set; }
+
         [Column("CDS_Number")]
-        public string CdsNumber { get; set; }
+        public string? CdsNumber { get; set; }
+
+        [Column("Paid")]
+        public bool? Paid { get; set; }
 
         [Column("Reference")]
-        public string Reference { get; set; }
+        public string? Reference { get; set; }
+
+        [Column("BidRef")]
+        public string? BidRef { get; set; }
     }
 }

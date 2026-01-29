@@ -134,7 +134,9 @@ namespace LuseGateway.Core.Services
                 CdsAccount = order.CdsAccount,
                 BrokerCode = order.BrokerCode,
                 Trader = order.Trader,
-                OrderAttribute = order.OrderAttribute
+                OrderAttribute = order.OrderAttribute,
+                ExchangeOrderNumber = order.ExchangeOrderNumber,
+                BrokerRef = order.BrokerRef
             };
             _dbContext.LiveOrders.Add(liveOrder);
         }

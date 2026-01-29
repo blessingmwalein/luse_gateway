@@ -8,59 +8,73 @@ namespace LuseGateway.Core.Models
     public class LiveOrder
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [Column("OrderNo")]
+        public long OrderNo { get; set; }
 
         [Column("Company")]
-        [StringLength(50)]
-        public string Company { get; set; }
+        public string? Company { get; set; }
+
+        [Column("Symbol")]
+        public string? Symbol { get; set; }
 
         [Column("SecurityType")]
-        [StringLength(50)]
-        public string SecurityType { get; set; }
+        public string? SecurityType { get; set; }
 
         [Column("Create_date")]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
 
         [Column("OrderStatus")]
-        [StringLength(50)]
-        public string OrderStatus { get; set; }
+        public string? OrderStatus { get; set; }
+
+        [Column("OrderType")]
+        public string? OrderType { get; set; }
 
         [Column("Quantity")]
-        public decimal Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [Column("BasePrice")]
-        public decimal BasePrice { get; set; }
-
-        [Column("TimeInForce")]
-        [StringLength(50)]
-        public string TimeInForce { get; set; }
-
-        [Column("MaturityDate")]
-        [StringLength(50)]
-        public string MaturityDate { get; set; }
+        public double BasePrice { get; set; }
 
         [Column("Side")]
-        [StringLength(10)]
-        public string Side { get; set; }
+        public string? Side { get; set; }
+
+        [Column("TimeInForce")]
+        public string? TimeInForce { get; set; }
+
+        [Column("Expiry_Date")]
+        public DateTime? ExpiryDate { get; set; }
+
+        [Column("MaturityDate")]
+        public string? MaturityDate { get; set; }
 
         [Column("OrderIdentifier")]
-        [StringLength(100)]
-        public string OrderIdentifier { get; set; }
+        public string? OrderIdentifier { get; set; }
 
         [Column("CDS_AC_No")]
-        [StringLength(50)]
-        public string CdsAccount { get; set; }
+        public string? CdsAccount { get; set; }
 
-        [Column("Broker_code")]
-        [StringLength(50)]
-        public string BrokerCode { get; set; }
+        [Column("Broker_Code")]
+        public string? BrokerCode { get; set; }
 
         [Column("Trader")]
-        [StringLength(50)]
-        public string Trader { get; set; }
+        public string? Trader { get; set; }
 
         [Column("OrderAttribute")]
-        public string OrderAttribute { get; set; }
+        public string? OrderAttribute { get; set; }
+
+        [Column("exchange_orderNumber")]
+        public string? ExchangeOrderNumber { get; set; }
+
+        [Column("leavesQuantity")]
+        public string? LeavesQuantity { get; set; }
+
+        [Column("MatchedPrice")]
+        public decimal? MatchedPrice { get; set; }
+
+        [Column("MatchedDate")]
+        public DateTime? MatchedDate { get; set; }
+
+        [Column("BrokerRef")]
+        public string? BrokerRef { get; set; }
     }
 }
