@@ -9,24 +9,24 @@ namespace LuseGateway.Core.Models
     {
         [Key]
         [Column("Symbol")]
-        public string Symbol { get; set; }
+        public string? Symbol { get; set; }
 
         [Column("Company")]
-        public string Company { get; set; }
+        public string? Company { get; set; }
 
         [Column("Fnam")]
-        public string Fnam { get; set; }
+        public string? Fnam { get; set; }
 
         [Column("exchange")]
-        public string Exchange { get; set; }
+        public string? Exchange { get; set; }
 
         [Column("SecurityType")]
-        public string SecurityType { get; set; }
+        public string? SecurityType { get; set; }
 
         [Column("Date_created")]
         public DateTime? DateCreated { get; set; }
 
         [Column("ISIN_No")]
-        public string IsinNo { get; set; }
+        public string? IsinNo { get; set; }
     }
 }

@@ -119,25 +119,25 @@ namespace LuseGateway.Service
                 new OrdType(OrdType.LIMIT)
             );
 
-            newOrder.Set(new Symbol(order.Symbol));
+            newOrder.Set(new Symbol(order.Symbol ?? ""));
             newOrder.Set(new OrderQty(order.Quantity));
-            newOrder.Set(new Price(order.BasePrice));
-            newOrder.Set(new Account(order.CdsAccount));
-            newOrder.Set(new SecurityID(order.Company));
+            newOrder.Set(new Price((decimal)order.BasePrice));
+            newOrder.Set(new Account(order.CdsAccount ?? ""));
+            newOrder.Set(new SecurityID(order.Company ?? ""));
             
             if (!string.IsNullOrEmpty(order.SecurityType))
                 newOrder.Set(new SecurityType(order.SecurityType));
 
             // Set Party IDs (Broker and Trader)
             var partyGroup = new QuickFix.FIX50.NewOrderSingle.NoPartyIDsGroup();
-            partyGroup.Set(new PartyID(order.BrokerCode));
+            partyGroup.Set(new PartyID(order.BrokerCode ?? ""));
             partyGroup.Set(new PartyRole(PartyRole.EXECUTING_FIRM));
             newOrder.AddGroup(partyGroup);
 
             if (!string.IsNullOrEmpty(order.Trader))
             {
                 var traderGroup = new QuickFix.FIX50.NewOrderSingle.NoPartyIDsGroup();
-                traderGroup.Set(new PartyID(order.Trader));
+                traderGroup.Set(new PartyID(order.Trader ?? ""));
                 traderGroup.Set(new PartyRole(PartyRole.ORDER_ORIGINATION_TRADER));
                 newOrder.AddGroup(traderGroup);
             }

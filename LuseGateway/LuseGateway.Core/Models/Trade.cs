@@ -13,34 +13,34 @@ namespace LuseGateway.Core.Models
 
         [Column("SecurityID")]
         [StringLength(50)]
-        public string SecurityId { get; set; }
+        public string? SecurityId { get; set; }
 
         [Column("MatchedQuantity")]
-        public string MatchedQuantity { get; set; }
+        public string? MatchedQuantity { get; set; }
 
         [Column("MatchedPrice")]
-        public string MatchedPrice { get; set; }
+        public string? MatchedPrice { get; set; }
 
         [Column("GrossTradeAmount")]
-        public string GrossTradeAmount { get; set; }
+        public string? GrossTradeAmount { get; set; }
 
         [Column("MatchedDate")]
         public DateTime MatchedDate { get; set; }
 
         [Column("OrderNumber")]
         [StringLength(50)]
-        public string OrderNumber { get; set; }
+        public string? OrderNumber { get; set; }
 
         [Column("TradingAccount")]
         [StringLength(50)]
-        public string TradingAccount { get; set; }
+        public string? TradingAccount { get; set; }
 
         [Column("SettlementDate")]
         [StringLength(50)]
-        public string SettlementDate { get; set; }
+        public string? SettlementDate { get; set; }
 
         [Column("SIDE")]
         [StringLength(10)]
-        public string Side { get; set; }
+        public string? Side { get; set; }
     }
 }

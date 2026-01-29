@@ -10,7 +10,7 @@ namespace LuseGateway.Core.Models
         [Key]
         [Column("Company")]
         [StringLength(50)]
-        public string Company { get; set; }
+        public string? Company { get; set; }
 
         [Column("SecurityType")]
         [StringLength(20)]

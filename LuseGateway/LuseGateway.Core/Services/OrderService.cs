@@ -125,7 +125,7 @@ namespace LuseGateway.Core.Services
                 SecurityType = order.SecurityType,
                 CreateDate = DateTime.Now,
                 OrderStatus = status,
-                Quantity = qty > 0 ? (double)qty : (double)order.Quantity,
+                Quantity = qty > 0 ? (int)qty : order.Quantity,
                 BasePrice = order.BasePrice,
                 TimeInForce = order.TimeInForce,
                 MaturityDate = order.ExpiryDate,

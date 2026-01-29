@@ -13,31 +13,31 @@ namespace LuseGateway.Core.Models
 
         [Column("OrderNumber")]
         [StringLength(50)]
-        public string OrderNumber { get; set; }
+        public string? OrderNumber { get; set; }
 
         [Column("Company")]
         [StringLength(50)]
-        public string Company { get; set; }
+        public string? Company { get; set; }
 
         [Column("Symbol")]
         [StringLength(50)]
-        public string Symbol { get; set; }
+        public string? Symbol { get; set; }
 
         [Column("SecurityType")]
         [StringLength(20)]
-        public string SecurityType { get; set; }
+        public string? SecurityType { get; set; }
 
         [Column("CDS_AC_No")]
         [StringLength(50)]
-        public string CdsAccount { get; set; }
+        public string? CdsAccount { get; set; }
 
         [Column("Broker_Code")]
         [StringLength(50)]
-        public string BrokerCode { get; set; }
+        public string? BrokerCode { get; set; }
 
         [Column("Trader")]
         [StringLength(50)]
-        public string Trader { get; set; }
+        public string? Trader { get; set; }
 
         [Column("Quantity")]
         public int Quantity { get; set; }
@@ -47,36 +47,36 @@ namespace LuseGateway.Core.Models
 
         [Column("Side")]
         [StringLength(10)]
-        public string Side { get; set; }
+        public string? Side { get; set; }
 
         [Column("OrderStatus")]
         [StringLength(50)]
-        public string OrderStatus { get; set; }
+        public string? OrderStatus { get; set; }
 
         [Column("Create_date")]
         public DateTime? CreateDate { get; set; }
 
         [Column("Expiry_Date")]
-        public string ExpiryDate { get; set; }
+        public string? ExpiryDate { get; set; }
 
         [Column("TimeInForce")]
         [StringLength(50)]
-        public string TimeInForce { get; set; }
+        public string? TimeInForce { get; set; }
 
         [Column("OrderCapacity")]
         [StringLength(20)]
-        public string OrderCapacity { get; set; }
+        public string? OrderCapacity { get; set; }
 
         [Column("exchange_orderNumber")]
         [StringLength(50)]
-        public string ExchangeOrderNumber { get; set; }
+        public string? ExchangeOrderNumber { get; set; }
 
         [Column("BrokerRef")]
         [StringLength(100)]
-        public string BrokerRef { get; set; }
+        public string? BrokerRef { get; set; }
 
         [Column("OrderAttribute")]
-        public string OrderAttribute { get; set; }
+        public string? OrderAttribute { get; set; }
 
         [Column("MatchedDate")]
         public DateTime? MatchedDate { get; set; }
