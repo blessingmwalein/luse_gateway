@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LuseGateway.Core.Models
 {
-    // Note: This table resides in the [CDSC] database
-    [Table("CashTrans", Schema = "CDSC.dbo")]
+    // Note: This table resides in the [cds] database
+    [Table("CashTrans", Schema = "cds.dbo")]
     public class CashTrans
     {
         [Key]
