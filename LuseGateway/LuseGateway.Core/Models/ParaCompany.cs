@@ -9,7 +9,7 @@ namespace LuseGateway.Core.Models
     {
         [Key]
         [Column("Symbol")]
-        public string? Symbol { get; set; }
+        public string Symbol { get; set; }
 
         [Column("Company")]
         public string? Company { get; set; }

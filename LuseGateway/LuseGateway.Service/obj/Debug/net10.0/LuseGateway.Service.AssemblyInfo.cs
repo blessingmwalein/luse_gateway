@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LuseGateway.Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17676ef3ebcdf006c0fdbc4fd0da1c8fad667171")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1ad7f24ddfd45a50fcd5acbf6577e53ecba26bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("LuseGateway.Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LuseGateway.Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

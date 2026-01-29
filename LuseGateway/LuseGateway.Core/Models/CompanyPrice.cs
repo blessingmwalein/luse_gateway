@@ -8,9 +8,12 @@ namespace LuseGateway.Core.Models
     public class CompanyPrice
     {
         [Key]
+        [Column("CompanyID")]
+        public short CompanyId { get; set; }
+
         [Column("Company")]
         [StringLength(50)]
-        public string? Company { get; set; }
+        public string Company { get; set; }
 
         [Column("SecurityType")]
         [StringLength(20)]

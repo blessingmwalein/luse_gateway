@@ -14,8 +14,8 @@
                 <div class="d-flex align-items-center text-danger">
                     <span class="fs-4 me-2">⚠️</span>
                     <div>
-                        <h4 class="mb-0">Database Connection Error</h4>
-                        <p class="mb-0 small">The gateway is unable to reach the SQL Server. Please check your connection strings in appsettings.json.</p>
+                        <h4 class="mb-0">Database Error</h4>
+                        <p class="mb-0 small">@DbError</p>
                     </div>
                 </div>
             </div>
@@ -35,16 +35,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in Orders)
+                        @if (Orders != null)
                         {
-                            <tr>
-                                <td>@order.OrderNo</td>
-                                <td>@order.Symbol</td>
-                                <td><span class="badge @(order.Side == "BUY" ? "bg-success" : "bg-danger")">@order.Side</span></td>
-                                <td>@order.Quantity</td>
-                                <td>@order.BasePrice.ToString("N2")</td>
-                                <td><span class="status-badge status-@order.OrderStatus.ToLower().Replace(" ", "-")">@order.OrderStatus</span></td>
-                            </tr>
+                            @foreach (var order in Orders)
+                            {
+                                <tr>
+                                    <td>@order.OrderNo</td>
+                                    <td>@(order.Symbol ?? "N/A")</td>
+                                    <td><span class="badge @(order.Side == "BUY" ? "bg-success" : "bg-danger")">@(order.Side ?? "N/A")</span></td>
+                                    <td>@order.Quantity</td>
+                                    <td>@order.BasePrice.ToString("N2")</td>
+                                    <td><span class="status-badge status-@((order.OrderStatus ?? "UNKNOWN").ToLower().Replace(" ", "-"))">@(order.OrderStatus ?? "UNKNOWN")</span></td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
@@ -54,13 +57,16 @@
         <div class="glass-card">
             <h3>FIX Message Log</h3>
             <div class="fix-log" id="logContainer">
-                @foreach (var msg in LogMessages)
+                @if (LogMessages != null)
                 {
-                    <div class="log-entry @msg.Direction.ToLower()">
-                        <span class="log-time">[@msg.Timestamp.ToString("HH:mm:ss.fff")]</span>
-                        <span class="log-dir">@(msg.Direction == "IN" ? "<< RECV" : ">> SEND")</span>
-                        <span class="log-content">@msg.Content</span>
-                    </div>
+                    @foreach (var msg in LogMessages)
+                    {
+                        <div class="log-entry @(msg.Direction?.ToLower() ?? "unknown")">
+                            <span class="log-time">[@msg.Timestamp.ToString("HH:mm:ss.fff")]</span>
+                            <span class="log-dir">@(msg.Direction == "IN" ? "<< RECV" : ">> SEND")</span>
+                            <span class="log-content">@msg.Content</span>
+                        </div>
+                    }
                 }
             </div>
         </div>
@@ -79,15 +85,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var price in MarketPrices)
+                        @if (MarketPrices != null)
                         {
-                            <tr>
-                                <td>@price.Company</td>
-                                <td class="text-success">@(price.BestBid?.ToString("N4") ?? "0.0000")</td>
-                                <td class="text-danger">@(price.BestAsk?.ToString("N4") ?? "0.0000")</td>
-                                <td class="text-accent">@(price.VwapPrice?.ToString("N4") ?? "0.0000")</td>
-                                <td class="small">@price.SecurityType</td>
-                            </tr>
+                            @foreach (var price in MarketPrices)
+                            {
+                                <tr>
+                                    <td>@(price.Company ?? "N/A")</td>
+                                    <td class="text-success">@(price.BestBid?.ToString("N4") ?? "0.0000")</td>
+                                    <td class="text-danger">@(price.BestAsk?.ToString("N4") ?? "0.0000")</td>
+                                    <td class="text-accent">@(price.VwapPrice?.ToString("N4") ?? "0.0000")</td>
+                                    <td class="small">@(price.SecurityType ?? "N/A")</td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
@@ -120,23 +129,26 @@
             <div class="stats-list">
                 <div class="stat-item">
                     <span class="stat-label">Active Session:</span>
-                    <span class="stat-value text-accent">@(FixApp.ActiveSessionId?.ToString() ?? "NONE")</span>
+                    <span class="stat-value text-accent">@(FixApp?.ActiveSessionId?.ToString() ?? "NONE")</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-label">Messages In:</span>
-                    <span class="stat-value">@LogMessages.Count(m => m.Direction == "IN")</span>
+                    <span class="stat-value">@(LogMessages?.Count(m => m.Direction == "IN") ?? 0)</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-label">Messages Out:</span>
-                    <span class="stat-value">@LogMessages.Count(m => m.Direction == "OUT")</span>
+                    <span class="stat-value">@(LogMessages?.Count(m => m.Direction == "OUT") ?? 0)</span>
                 </div>
                 <hr class="border-secondary my-2" />
-                @foreach (var stat in OrderStats)
+                @if (OrderStats != null)
                 {
-                    <div class="stat-item">
-                        <span class="stat-label">@stat.Key:</span>
-                        <span class="stat-value badge @GetStatusBadgeClass(stat.Key)">@stat.Value</span>
-                    </div>
+                    @foreach (var stat in OrderStats)
+                    {
+                        <div class="stat-item">
+                            <span class="stat-label">@(stat.Key ?? "UNKNOWN"):</span>
+                            <span class="stat-value badge @GetStatusBadgeClass(stat.Key ?? "UNKNOWN")">@stat.Value</span>
+                        </div>
+                    }
                 }
             </div>
         </div>
@@ -144,11 +156,11 @@
 </div>
 
 @code {
-    [Inject] private LuseGateway.Fix.LuseFixApplication FixApp { get; set; }
-    [Inject] private IFixMessageLogService LogService { get; set; }
-    [Inject] private IFixActionService ActionService { get; set; }
-    [Inject] private IOrderService OrderService { get; set; }
-    [Inject] private NavigationManager Navigation { get; set; }
+    [Inject] private LuseGateway.Fix.LuseFixApplication? FixApp { get; set; }
+    [Inject] private IFixMessageLogService? LogService { get; set; }
+    [Inject] private IFixActionService? ActionService { get; set; }
+    [Inject] private IOrderService? OrderService { get; set; }
+    [Inject] private NavigationManager? Navigation { get; set; }
 
     private List<FixMessageEntry> LogMessages = new();
     private List<PreOrderLive> Orders = new();
@@ -159,42 +171,54 @@
 
     protected override async Task OnInitializedAsync()
     {
-        LogMessages = LogService.GetRecentMessages().ToList();
+        if (LogService != null)
+        {
+            LogMessages = LogService.GetRecentMessages().ToList();
+        }
         await RefreshData();
 
-        hubConnection = new HubConnectionBuilder()
-            .WithUrl(Navigation.ToAbsoluteUri("/gatewayHub"))
-            .Build();
-
-        hubConnection.On<FixMessageEntry>("ReceiveFixMessage", async (message) =>
+        if (Navigation != null)
         {
-            LogMessages.Insert(0, message);
-            if (LogMessages.Count > 100) LogMessages.RemoveAt(LogMessages.Count - 1);
-            
-            // Auto-refresh data on new messages
-            await RefreshData();
-            await InvokeAsync(StateHasChanged);
-        });
+            hubConnection = new HubConnectionBuilder()
+                .WithUrl(Navigation.ToAbsoluteUri("/gatewayHub"))
+                .Build();
 
-        await hubConnection.StartAsync();
+            hubConnection.On<FixMessageEntry>("ReceiveFixMessage", async (message) =>
+            {
+                LogMessages.Insert(0, message);
+                if (LogMessages.Count > 100) LogMessages.RemoveAt(LogMessages.Count - 1);
+                
+                // Auto-refresh data on new messages
+                await RefreshData();
+                await InvokeAsync(StateHasChanged);
+            });
+
+            await hubConnection.StartAsync();
+        }
     }
 
     private async Task RefreshData()
     {
+        if (OrderService == null) return;
+
         try 
         {
-            Orders = (await OrderService.GetPendingOrdersAsync()).Take(5).ToList();
-            MarketPrices = (await OrderService.GetCompanyPricesAsync()).ToList();
+            var pending = await OrderService.GetPendingOrdersAsync();
+            Orders = pending.Take(5).ToList();
+            
+            var prices = await OrderService.GetCompanyPricesAsync();
+            MarketPrices = prices.ToList();
+            
             OrderStats = await OrderService.GetOrderStatsAsync();
             DbError = null;
         }
         catch (Exception ex)
         {
-            DbError = "Could not connect to database.";
+            DbError = $"Database error: {ex.Message}";
         }
     }
 
-    private string GetStatusBadgeClass(string status) => status.ToUpper() switch
+    private string GetStatusBadgeClass(string status) => (status ?? "").ToUpper() switch
     {
         "MATCHED ORDER" => "bg-success",
         "REJECTED" => "bg-danger",

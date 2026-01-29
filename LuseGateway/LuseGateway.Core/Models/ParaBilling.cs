@@ -8,7 +8,7 @@ namespace LuseGateway.Core.Models
     {
         [Key]
         [Column("ChargeName")]
-        public string? ChargeName { get; set; }
+        public string ChargeName { get; set; }
 
         [Column("ChargeCode")]
         public string? ChargeCode { get; set; }

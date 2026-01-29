@@ -238,10 +238,12 @@ namespace LuseGateway.Core.Services
 
         public async Task<Dictionary<string, int>> GetOrderStatsAsync()
         {
-            return await _dbContext.PreOrders
+            var stats = await _dbContext.PreOrders
                 .GroupBy(o => o.OrderStatus)
                 .Select(g => new { Status = g.Key, Count = g.Count() })
-                .ToDictionaryAsync(x => x.Status ?? "UNKNOWN", x => x.Count);
+                .ToListAsync();
+
+            return stats.ToDictionary(x => x.Status ?? "UNKNOWN", x => x.Count);
         }
     }
 }
