@@ -1,0 +1,162 @@
+@page "/"
+@using Microsoft.AspNetCore.SignalR.Client
+@using LuseGateway.Service.Services
+@implements IAsyncDisposable
+
+<PageTitle>LUSE Gateway Dashboard</PageTitle>
+
+<div class="dashboard-grid fade-in">
+    <!-- Left Column: Orders & Activity -->
+    <div class="main-panel">
+        @if (!string.IsNullOrEmpty(DbError))
+        {
+            <div class="glass-card border-danger">
+                <div class="d-flex align-items-center text-danger">
+                    <span class="fs-4 me-2">⚠️</span>
+                    <div>
+                        <h4 class="mb-0">Database Connection Error</h4>
+                        <p class="mb-0 small">The gateway is unable to reach the SQL Server. Please check your connection strings in appsettings.json.</p>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="glass-card">
+            <h3>Active Orders (PreOrderLive)</h3>
+            <div class="order-table-container">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Order No</th>
+                            <th>Symbol</th>
+                            <th>Side</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Orders)
+                        {
+                            <tr>
+                                <td>@order.OrderNo</td>
+                                <td>@order.Symbol</td>
+                                <td><span class="badge @(order.Side == "BUY" ? "bg-success" : "bg-danger")">@order.Side</span></td>
+                                <td>@order.Quantity</td>
+                                <td>@order.BasePrice.ToString("N2")</td>
+                                <td><span class="status-badge status-@order.OrderStatus.ToLower().Replace(" ", "-")">@order.OrderStatus</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h3>FIX Message Log</h3>
+            <div class="fix-log" id="logContainer">
+                @foreach (var msg in LogMessages)
+                {
+                    <div class="log-entry @msg.Direction.ToLower()">
+                        <span class="log-time">[@msg.Timestamp.ToString("HH:mm:ss.fff")]</span>
+                        <span class="log-dir">@(msg.Direction == "IN" ? "<< RECV" : ">> SEND")</span>
+                        <span class="log-content">@msg.Content</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Actions & Stats -->
+    <div class="side-panel">
+        <div class="glass-card">
+            <h3>Gateway Actions</h3>
+            <div class="d-grid gap-2">
+                <button class="btn-glass btn-primary-glass" @onclick="RequestSecurityDefs">
+                    <span class="btn-icon">📋</span> Request Security Definitions
+                </button>
+                <button class="btn-glass" @onclick="RequestMarketData">
+                    <span class="btn-icon">📈</span> Subscribe Market Data (MSFT)
+                </button>
+                <button class="btn-glass" @onclick="RequestPartyIDs">
+                    <span class="btn-icon">👥</span> Synchronize Party IDs
+                </button>
+                <button class="btn-glass" @onclick="CheckOrderStatus">
+                    <span class="btn-icon">🔍</span> Query Order Status
+                </button>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h3>Session Statistics</h3>
+            <div class="stats-list">
+                <div class="stat-item">
+                    <span class="stat-label">Messages In:</span>
+                    <span class="stat-value">@LogMessages.Count(m => m.Direction == "IN")</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Messages Out:</span>
+                    <span class="stat-value">@LogMessages.Count(m => m.Direction == "OUT")</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Active Session:</span>
+                    <span class="stat-value text-accent">@(FixApp.ActiveSessionId?.ToString() ?? "NONE")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Inject] private LuseGateway.Fix.LuseFixApplication FixApp { get; set; }
+    [Inject] private IFixMessageLogService LogService { get; set; }
+    [Inject] private IFixActionService ActionService { get; set; }
+    [Inject] private IOrderService OrderService { get; set; }
+    [Inject] private NavigationManager Navigation { get; set; }
+
+    private List<FixMessageEntry> LogMessages = new();
+    private List<PreOrderLive> Orders = new();
+    private HubConnection? hubConnection;
+    private string? DbError;
+
+    protected override async Task OnInitializedAsync()
+    {
+        LogMessages = LogService.GetRecentMessages().ToList();
+        
+        try 
+        {
+            Orders = (await OrderService.GetPendingOrdersAsync()).Take(10).ToList();
+            DbError = null;
+        }
+        catch (Exception ex)
+        {
+            DbError = "Could not connect to database.";
+            // We still want the dashboard to load for FIX monitoring
+        }
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/gatewayHub"))
+            .Build();
+
+        hubConnection.On<FixMessageEntry>("ReceiveFixMessage", (message) =>
+        {
+            LogMessages.Insert(0, message);
+            if (LogMessages.Count > 100) LogMessages.RemoveAt(LogMessages.Count - 1);
+            InvokeAsync(StateHasChanged);
+        });
+
+        await hubConnection.StartAsync();
+    }
+
+    private async Task RequestSecurityDefs() => await ActionService.RequestSecurityDefinitionsAsync();
+    private async Task RequestMarketData() => await ActionService.RequestMarketDataAsync("MSFT");
+    private async Task RequestPartyIDs() => await ActionService.RequestPartyIDsAsync();
+    private async Task CheckOrderStatus() => await ActionService.RequestOrderStatusAsync("SAMPLE_ID");
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+}

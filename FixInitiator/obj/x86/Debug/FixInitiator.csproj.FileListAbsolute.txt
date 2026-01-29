@@ -1,0 +1,9 @@
+C:\Fix50EscrowEquities\FixInitiator\bin\Debug\FixInitiator.exe.config
+C:\Fix50EscrowEquities\FixInitiator\obj\x86\Debug\FixInitiator.frmMain.resources
+C:\Fix50EscrowEquities\FixInitiator\obj\x86\Debug\FixInitiator.Properties.Resources.resources
+C:\Fix50EscrowEquities\FixInitiator\obj\x86\Debug\FixInitiator.csproj.GenerateResource.Cache
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Debug\FixInitiator.frmMain.resources
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Debug\FixInitiator.Properties.Resources.resources
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Debug\FixInitiator.csproj.GenerateResource.cache
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Debug\FixInitiator.csproj.CoreCompileInputs.cache
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Debug\FixInitiator.csproj.AssemblyReference.cache

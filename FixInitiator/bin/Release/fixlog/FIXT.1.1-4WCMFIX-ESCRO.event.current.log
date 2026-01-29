@@ -1,0 +1,17 @@
+20210327-07:03:25.058 : Created session
+20210327-07:03:31.252 : Connecting to 192.168.3.118 on port 9014
+20210327-07:03:31.650 : Connection succeeded
+20210327-07:03:34.596 : Initiated logon request
+20210327-07:03:35.583 : Session FIXT.1.1:4WCMFIX->ESCRO disconnecting: System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at QuickFix.SocketInitiatorThread.Read() in C:\Code\FIXSolutions\trunk\IGFixSolution\Source Code\connamara-quickfixn-6ac10b0\QuickFIXn\SocketInitiatorThread.cs:line 68
+20210327-07:04:01.554 : Connecting to 192.168.3.118 on port 9014
+20210327-07:04:01.557 : Connection succeeded
+20210327-07:04:01.563 : Initiated logon request
+20210327-07:04:01.576 : Session FIXT.1.1:4WCMFIX->ESCRO disconnecting: System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at QuickFix.SocketInitiatorThread.Read() in C:\Code\FIXSolutions\trunk\IGFixSolution\Source Code\connamara-quickfixn-6ac10b0\QuickFIXn\SocketInitiatorThread.cs:line 68
+20210327-07:04:36.214 : Created session
+20210327-07:04:50.400 : Connecting to 192.168.3.118 on port 9014
+20210327-07:04:50.413 : Connection succeeded
+20210327-07:04:50.471 : Initiated logon request
+20210327-07:04:50.508 : Session FIXT.1.1:4WCMFIX->ESCRO disconnecting: System.Net.Sockets.SocketException: An existing connection was forcibly closed by the remote host
+   at QuickFix.SocketInitiatorThread.Read() in C:\Code\FIXSolutions\trunk\IGFixSolution\Source Code\connamara-quickfixn-6ac10b0\QuickFIXn\SocketInitiatorThread.cs:line 68

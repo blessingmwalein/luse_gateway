@@ -1,0 +1,25 @@
+@inherits LayoutComponentBase
+
+<div class="page">
+    <main>
+        <div class="top-row px-4 dashboard-header">
+            <div class="header-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">LUSE FIX GATEWAY</span>
+            </div>
+            <div class="header-status">
+                <span class="status-indicator @(IsConnected ? "online" : "offline")"></span>
+                <span class="status-text">@(IsConnected ? "CONNECTED" : "DISCONNECTED")</span>
+            </div>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    [Inject] private LuseGateway.Fix.LuseFixApplication FixApp { get; set; }
+    private bool IsConnected => FixApp.ActiveSessionId != null;
+}

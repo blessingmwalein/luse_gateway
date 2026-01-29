@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>C:\LUSE Fix\latest gateway 100424\Publidhe\|C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Publidhe\|C:\LUSE Fix\May 2024 17 latest gateway\Publidhe\|C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Publidhe\|C:\LUSE Fix\UAT latest\Latest Gateway\Publidhe\</PublishUrlHistory>
+    <InstallUrlHistory />
+    <SupportUrlHistory />
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+</Project>

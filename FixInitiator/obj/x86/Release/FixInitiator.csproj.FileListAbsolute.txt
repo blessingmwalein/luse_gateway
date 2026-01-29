@@ -1,0 +1,315 @@
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\FixInitiator.exe
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\FixInitiator.pdb
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\QuickFix.dll
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\QuickFix.pdb
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.csprojAssemblyReference.cache
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\Users\troy\Desktop\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\FixInitiator.exe
+C:\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\FixInitiator.pdb
+C:\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\Fix50Sp2SampleApp-master\FixInitiator\bin\Release\FixInitiator.application
+C:\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\Fix50Sp2SampleApp-master\FixInitiator\obj\x86\Release\FixInitiator.csprojResolveAssemblyReference.cache
+C:\Fix50EscrowBonds\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\Fix50EscrowBonds\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\Fix50EscrowBonds\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\Fix50EscrowBonds\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\Fix50EscrowBonds\FixInitiator\bin\Release\FixInitiator.application
+C:\Fix50EscrowBonds\FixInitiator\bin\Release\FixInitiator.exe
+C:\Fix50EscrowBonds\FixInitiator\bin\Release\FixInitiator.pdb
+C:\Fix50EscrowBonds\FixInitiator\obj\x86\Release\FixInitiator.csprojResolveAssemblyReference.cache
+C:\Fix50EscrowBonds\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\Fix50EscrowBonds\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\Fix50EscrowBonds\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.Cache
+C:\Fix50EscrowBonds\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\Fix50EscrowBonds\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.Cache
+C:\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\Users\troy\Documents\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csprojResolveAssemblyReference.cache
+C:\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\NSE dry associates\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\Latest 08022023\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\latest LUSE\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\SBZL\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\live latest march 21\Latest Gateway\Latest Gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\UAT latest\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\UAT latest may 2024\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixIniti.6C0659FB.Up2Date
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\latest 13-09-24\May 2024 17 latest gateway\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\latest gateway 100424\Latest Gateway\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.application
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.exe
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\bin\Release\FixInitiator.pdb
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.CopyComplete
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.pdb
+C:\LUSE Fix\latest gateway 100424\UAT\UAT latest\Luse Fix\Fix50EscrowEquities\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\bin\Release\FixInitiator.exe.config
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\bin\Release\FixInitiator.exe.manifest
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\bin\Release\FixInitiator.application
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\bin\Release\FixInitiator.exe
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\bin\Release\FixInitiator.pdb
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixInitiator.csproj.AssemblyReference.cache
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixInitiator.frmMain.resources
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixInitiator.Properties.Resources.resources
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixInitiator.csproj.GenerateResource.cache
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixInitiator.csproj.CoreCompileInputs.cache
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixInitiator.exe.manifest
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixInitiator.application
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixIniti.6C0659FB.Up2Date
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixInitiator.exe
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\FixInitiator\obj\x86\Release\FixInitiator.pdb

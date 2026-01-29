@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="LuseGateway.Core/LuseGateway.Core.csproj" />
+  <Project Path="LuseGateway.Fix/LuseGateway.Fix.csproj" />
+  <Project Path="LuseGateway.Service/LuseGateway.Service.csproj" />
+</Solution>
