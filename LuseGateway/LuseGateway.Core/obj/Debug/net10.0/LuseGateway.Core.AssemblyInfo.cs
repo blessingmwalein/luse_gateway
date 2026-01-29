@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LuseGateway.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1ad7f24ddfd45a50fcd5acbf6577e53ecba26bf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d709ca85486272a01ef4e0d580aee80100e97794")]
 [assembly: System.Reflection.AssemblyProductAttribute("LuseGateway.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LuseGateway.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

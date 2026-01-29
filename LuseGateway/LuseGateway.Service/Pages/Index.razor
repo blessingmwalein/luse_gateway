@@ -185,8 +185,11 @@
 
             hubConnection.On<FixMessageEntry>("ReceiveFixMessage", async (message) =>
             {
-                LogMessages.Insert(0, message);
-                if (LogMessages.Count > 100) LogMessages.RemoveAt(LogMessages.Count - 1);
+                if (LogMessages != null)
+                {
+                    LogMessages.Insert(0, message);
+                    if (LogMessages.Count > 100) LogMessages.RemoveAt(LogMessages.Count - 1);
+                }
                 
                 // Auto-refresh data on new messages
                 await RefreshData();
@@ -227,10 +230,10 @@
         _ => "bg-secondary"
     };
 
-    private async Task RequestSecurityDefs() => await ActionService.RequestSecurityDefinitionsAsync();
-    private async Task RequestMarketData() => await ActionService.RequestMarketDataAsync("MSFT");
-    private async Task RequestPartyIDs() => await ActionService.RequestPartyIDsAsync();
-    private async Task CheckOrderStatus() => await ActionService.RequestOrderStatusAsync("SAMPLE_ID");
+    private async Task RequestSecurityDefs() { if (ActionService != null) await ActionService.RequestSecurityDefinitionsAsync(); }
+    private async Task RequestMarketData() { if (ActionService != null) await ActionService.RequestMarketDataAsync("MSFT"); }
+    private async Task RequestPartyIDs() { if (ActionService != null) await ActionService.RequestPartyIDsAsync(); }
+    private async Task CheckOrderStatus() { if (ActionService != null) await ActionService.RequestOrderStatusAsync("SAMPLE_ID"); }
 
     public async ValueTask DisposeAsync()
     {

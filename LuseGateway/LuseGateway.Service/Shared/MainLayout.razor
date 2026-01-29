@@ -20,6 +20,6 @@
 </div>
 
 @code {
-    [Inject] private LuseGateway.Fix.LuseFixApplication FixApp { get; set; }
-    private bool IsConnected => FixApp.ActiveSessionId != null;
+    [Inject] private LuseGateway.Fix.LuseFixApplication? FixApp { get; set; }
+    private bool IsConnected => FixApp?.ActiveSessionId != null;
 }
