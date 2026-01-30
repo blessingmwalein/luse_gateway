@@ -51,15 +51,43 @@
                 </div>
             </div>
         </div>
+@using LuseGateway.Core.Utilities
+
+@* ... existing code until Decoded Data Stream ... *@
         <div class="col-4">
             <div class="glass-card">
-                <h3>Decoded Data Stream</h3>
+                <h3>System Activity</h3>
                 <div class="fix-log" style="height: 500px;">
                     @foreach (var msg in DecodedMessages)
                     {
-                        <div class="log-entry @(msg.Direction.ToLower())">
-                            <span class="log-time">[@msg.Timestamp.ToString("HH:mm:ss.fff")]</span>
-                            <div class="log-content small mt-1">@FormatFixMessage(msg.Content)</div>
+                        var decodedTags = FixDecoder.Decode(msg.Content);
+                        var summary = FixDecoder.GetSummary(msg.Content);
+                        
+                        <div class="log-entry @(msg.Direction.ToLower()) border-bottom border-secondary mb-3 pb-2">
+                            <div class="d-flex justify-content-between x-small opacity-75">
+                                <span>[@msg.Timestamp.ToString("HH:mm:ss.fff")] @msg.Direction</span>
+                                <span class="text-accent fw-bold">@summary</span>
+                            </div>
+                            
+                            <div class="mt-2">
+                                <details>
+                                    <summary class="small cursor-pointer text-secondary">View Decoded Tags</summary>
+                                    <div class="bg-black p-2 mt-1 rounded x-small">
+                                        @foreach (var tag in decodedTags)
+                                        {
+                                            <div class="d-flex gap-2">
+                                                <span class="text-secondary" style="width: 30px">@tag.Tag</span>
+                                                <span class="text-accent" style="width: 100px">@tag.Name</span>
+                                                <span class="text-white">@tag.Value</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </details>
+                            </div>
+                            
+                            <div class="mt-1 x-small opacity-50 text-break">
+                                Raw: @msg.Content
+                            </div>
                         </div>
                     }
                 </div>

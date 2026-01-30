@@ -134,5 +134,35 @@ namespace LuseGateway.Fix
                 _logger.LogError(ex, "Error processing SecurityDefinition");
             }
         }
+        public void OnMessage(QuickFix.FIX50SP2.Reject message, SessionID sessionID)
+        {
+            _logger.LogWarning("FIX Reject received: {Text} (RefSeqNum: {RefSeqNum}, RefTagID: {RefTagID})", 
+                message.IsSetText() ? message.Text.Value : "No text", 
+                message.IsSetRefSeqNum() ? message.RefSeqNum.Value.ToString() : "N/A",
+                message.IsSetRefTagID() ? message.RefTagID.Value.ToString() : "N/A");
+        }
+
+        public void OnMessage(QuickFix.FIX50SP2.BusinessMessageReject message, SessionID sessionID)
+        {
+            _logger.LogError("Business Message Reject received: {Text} (RefMsgType: {RefMsgType}, Reason: {Reason})", 
+                message.IsSetText() ? message.Text.Value : "No text",
+                message.IsSetRefMsgType() ? message.RefMsgType.Value : "N/A",
+                message.IsSetBusinessRejectReason() ? message.BusinessRejectReason.Value.ToString() : "N/A");
+
+            // Update order status if possible
+            if (message.IsSetBusinessRejectRefID())
+            {
+                try
+                {
+                    using var scope = _scopeFactory.CreateScope();
+                    var orderService = scope.ServiceProvider.GetRequiredService<IOrderService>();
+                    orderService.UpdateOrderStatusAsync(message.BusinessRejectRefID.Value, "REJECTED", null, message.IsSetText() ? message.Text.Value : "Business Reject").GetAwaiter().GetResult();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error updating status for Business Reject");
+                }
+            }
+        }
     }
 }

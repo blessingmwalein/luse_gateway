@@ -142,6 +142,8 @@ namespace LuseGateway.Service
                 newOrder.AddGroup(traderGroup);
             }
 
+            newOrder.Set(new OrderCapacity(OrderCapacity.AGENCY));
+
             return newOrder;
         }
     }

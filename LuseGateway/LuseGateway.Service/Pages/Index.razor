@@ -69,6 +69,9 @@
                 </div>
             </div>
 
+@using LuseGateway.Core.Utilities
+
+@* ... existing code until Recent System Activity ... *@
             <div class="glass-card">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h3>Recent System Activity</h3>
@@ -77,10 +80,13 @@
                 <div class="fix-log" style="height: 250px;">
                     @foreach (var msg in LogMessages.Take(10))
                     {
-                        <div class="log-entry @(msg.Direction.ToLower())">
-                            <span class="log-time">[@msg.Timestamp.ToString("HH:mm:ss")]</span>
-                            <span class="log-dir">@(msg.Direction == "IN" ? "<< " : ">> ")</span>
-                            <span class="log-content">@msg.Content.Substring(0, Math.Min(msg.Content.Length, 80))...</span>
+                        var summary = FixDecoder.GetSummary(msg.Content);
+                        <div class="log-entry @(msg.Direction.ToLower()) border-bottom border-secondary mb-2 pb-1">
+                            <div class="d-flex justify-content-between x-small opacity-75">
+                                <span>[@msg.Timestamp.ToString("HH:mm:ss")] @(msg.Direction == "IN" ? "←" : "→")</span>
+                                <span class="text-accent">@summary</span>
+                            </div>
+                            <div class="log-content mt-1 x-small text-truncate opacity-50">@msg.Content</div>
                         </div>
                     }
                 </div>

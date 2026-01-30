@@ -50,8 +50,7 @@ namespace LuseGateway.Core.Models
         public double? OpenInterest { get; set; }
 
         [Column("maturitydate")]
-        [StringLength(50)]
-        public string? MaturityDate { get; set; }
+        public DateTime? MaturityDate { get; set; }
 
         [Column("previousdaysindex")]
         public long? PreviousDaysIndex { get; set; }
