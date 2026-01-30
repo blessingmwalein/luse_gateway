@@ -4,3 +4,15 @@ C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\LuseGateway.Fix.AssemblyInfo.cs
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\LuseGateway.Fix.csproj.CoreCompileInputs.cache
 C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\LuseGateway.Fix.sourcelink.json
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\bin\Debug\net10.0\FIX50SP2.xml
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\bin\Debug\net10.0\FIXT11.xml
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\bin\Debug\net10.0\LuseGateway.Fix.deps.json
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\bin\Debug\net10.0\LuseGateway.Fix.dll
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\bin\Debug\net10.0\LuseGateway.Fix.pdb
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\bin\Debug\net10.0\LuseGateway.Core.dll
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\bin\Debug\net10.0\LuseGateway.Core.pdb
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\LuseGate.1ECDB2A4.Up2Date
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\LuseGateway.Fix.dll
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\refint\LuseGateway.Fix.dll
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\LuseGateway.Fix.pdb
+C:\Users\Blessing Mwale\Documents\Projects\LUSE\Gateway\LuseGateway\LuseGateway.Fix\obj\Debug\net10.0\ref\LuseGateway.Fix.dll

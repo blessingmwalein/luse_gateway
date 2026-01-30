@@ -134,7 +134,7 @@ namespace LuseGateway.Fix
                 _logger.LogError(ex, "Error processing SecurityDefinition");
             }
         }
-        public void OnMessage(QuickFix.FIX50SP2.Reject message, SessionID sessionID)
+        public void OnMessage(QuickFix.FIXT11.Reject message, SessionID sessionID)
         {
             _logger.LogWarning("FIX Reject received: {Text} (RefSeqNum: {RefSeqNum}, RefTagID: {RefTagID})", 
                 message.IsSetText() ? message.Text.Value : "No text", 
