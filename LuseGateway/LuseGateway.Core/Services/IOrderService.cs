@@ -6,6 +6,8 @@ namespace LuseGateway.Core.Services
 {
     public interface IOrderService
     {
+        Task<IEnumerable<PreOrderLive>> GetOrdersAsync(int page = 1, int pageSize = 10, DateTime? fromDate = null, string[]? statuses = null);
+        Task<int> GetOrderCountAsync(DateTime? fromDate = null, string[]? statuses = null);
         Task<IEnumerable<PreOrderLive>> GetPendingOrdersAsync();
         Task MarkAsPostedAsync(long orderNo);
         Task UpdateOrderStatusAsync(string clOrdId, string status, string exchangeOrderId = null, string rejectionReason = null);

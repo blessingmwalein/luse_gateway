@@ -1,15 +1,36 @@
 @inherits LayoutComponentBase
 
 <div class="page">
-    <main>
-        <div class="top-row px-4 dashboard-header">
+    <div class="sidebar">
+        <div class="sidebar-header">
             <div class="header-logo">
                 <span class="logo-icon">⚡</span>
-                <span class="logo-text">LUSE FIX GATEWAY</span>
+                <span class="logo-text">LUSE FIX</span>
             </div>
-            <div class="header-status">
+        </div>
+        <nav class="nav-links">
+            <NavLink class="nav-item" href="" Match="NavLinkMatch.All">
+                <span class="nav-icon">📊</span> Dashboard
+            </NavLink>
+            <NavLink class="nav-item" href="orders">
+                <span class="nav-icon">📜</span> Orders
+            </NavLink>
+            <NavLink class="nav-item" href="market-data">
+                <span class="nav-icon">📈</span> Market Data
+            </NavLink>
+        </nav>
+        <div class="header-status p-3 border-top">
+            <div class="d-flex align-items-center">
                 <span class="status-indicator @(IsConnected ? "online" : "offline")"></span>
-                <span class="status-text">@(IsConnected ? "CONNECTED" : "DISCONNECTED")</span>
+                <small class="status-text">@(IsConnected ? "CONNECTED" : "DISCONNECTED")</small>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="top-row px-4 dashboard-header justify-content-end">
+             <div class="session-info small opacity-75">
+                Session: <span class="text-accent">@(FixApp?.ActiveSessionId?.ToString() ?? "NONE")</span>
             </div>
         </div>
 

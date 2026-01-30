@@ -3,153 +3,120 @@
 @using LuseGateway.Service.Services
 @implements IAsyncDisposable
 
-<PageTitle>LUSE Gateway Dashboard</PageTitle>
+<PageTitle>Dashboard | LUSE FIX Gateway</PageTitle>
 
-<div class="dashboard-grid fade-in">
-    <!-- Left Column: Orders & Activity -->
-    <div class="main-panel">
-        @if (!string.IsNullOrEmpty(DbError))
-        {
-            <div class="glass-card border-danger">
-                <div class="d-flex align-items-center text-danger">
-                    <span class="fs-4 me-2">⚠️</span>
-                    <div>
-                        <h4 class="mb-0">Database Error</h4>
-                        <p class="mb-0 small">@DbError</p>
-                    </div>
-                </div>
-            </div>
-        }
-        <div class="glass-card">
-            <h3>Active Orders (PreOrderLive)</h3>
-            <div class="order-table-container">
-                <table class="table table-dark table-hover">
-                    <thead>
-                        <tr>
-                            <th>Order No</th>
-                            <th>Symbol</th>
-                            <th>Side</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Orders != null)
-                        {
-                            @foreach (var order in Orders)
-                            {
-                                <tr>
-                                    <td>@order.OrderNo</td>
-                                    <td>@(order.Symbol ?? "N/A")</td>
-                                    <td><span class="badge @(order.Side == "BUY" ? "bg-success" : "bg-danger")">@(order.Side ?? "N/A")</span></td>
-                                    <td>@order.Quantity</td>
-                                    <td>@order.BasePrice.ToString("N2")</td>
-                                    <td><span class="status-badge status-@((order.OrderStatus ?? "UNKNOWN").ToLower().Replace(" ", "-"))">@(order.OrderStatus ?? "UNKNOWN")</span></td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
+<div class="fade-in">
+    <h1 class="mb-4">Gateway Overview</h1>
+
+    <div class="row">
+        <!-- Summary Stats -->
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <div class="small opacity-50 mb-1">Session Link</div>
+                <h3 class="@(IsConnected ? "text-success" : "text-danger")">@(IsConnected ? "ACTIVE" : "DOWN")</h3>
             </div>
         </div>
-
-        <div class="glass-card">
-            <h3>FIX Message Log</h3>
-            <div class="fix-log" id="logContainer">
-                @if (LogMessages != null)
-                {
-                    @foreach (var msg in LogMessages)
-                    {
-                        <div class="log-entry @(msg.Direction?.ToLower() ?? "unknown")">
-                            <span class="log-time">[@msg.Timestamp.ToString("HH:mm:ss.fff")]</span>
-                            <span class="log-dir">@(msg.Direction == "IN" ? "<< RECV" : ">> SEND")</span>
-                            <span class="log-content">@msg.Content</span>
-                        </div>
-                    }
-                }
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <div class="small opacity-50 mb-1">Open Orders</div>
+                <h3 class="text-accent">@GetStat("OPEN")</h3>
             </div>
         </div>
-
-        <div class="glass-card mt-4">
-            <h3>Market Data Feed (CompanyPrices)</h3>
-            <div class="order-table-container">
-                <table class="table table-dark table-hover">
-                    <thead>
-                        <tr>
-                            <th>Symbol</th>
-                            <th>Bid</th>
-                            <th>Ask</th>
-                            <th>VWAP</th>
-                            <th>Type</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (MarketPrices != null)
-                        {
-                            @foreach (var price in MarketPrices)
-                            {
-                                <tr>
-                                    <td>@(price.Company ?? "N/A")</td>
-                                    <td class="text-success">@(price.BestBid?.ToString("N4") ?? "0.0000")</td>
-                                    <td class="text-danger">@(price.BestAsk?.ToString("N4") ?? "0.0000")</td>
-                                    <td class="text-accent">@(price.VwapPrice?.ToString("N4") ?? "0.0000")</td>
-                                    <td class="small">@(price.SecurityType ?? "N/A")</td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <div class="small opacity-50 mb-1">Matched Today</div>
+                <h3 class="text-success">@GetStat("MATCHED ORDER")</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-card text-center">
+                <div class="small opacity-50 mb-1">Rejected Today</div>
+                <h3 class="text-danger">@GetStat("REJECTED")</h3>
             </div>
         </div>
     </div>
 
-    <!-- Right Column: Actions & Stats -->
-    <div class="side-panel">
-        <div class="glass-card">
-            <h3>Gateway Actions</h3>
-            <div class="d-grid gap-2">
-                <button class="btn-glass btn-primary-glass" @onclick="RequestSecurityDefs">
-                    <span class="btn-icon">📋</span> Request Security Definitions
-                </button>
-                <button class="btn-glass" @onclick="RequestMarketData">
-                    <span class="btn-icon">📈</span> Subscribe Market Data (MSFT)
-                </button>
-                <button class="btn-glass" @onclick="RequestPartyIDs">
-                    <span class="btn-icon">👥</span> Synchronize Party IDs
-                </button>
-                <button class="btn-glass" @onclick="CheckOrderStatus">
-                    <span class="btn-icon">🔍</span> Query Order Status
-                </button>
+    <div class="dashboard-grid mt-2">
+        <!-- Main Actions -->
+        <div class="main-panel">
+            <div class="glass-card">
+                <h3>Quick Actions</h3>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <button class="btn-glass w-100 py-3" @onclick="RequestSecurityDefs">
+                            <span class="fs-4 d-block mb-1">📋</span>
+                            Update Securities
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn-glass w-100 py-3" @onclick="RequestMarketData">
+                            <span class="fs-4 d-block mb-1">📈</span>
+                            Subscribe Feed
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn-glass w-100 py-3" @onclick="RequestPartyIDs">
+                            <span class="fs-4 d-block mb-1">👥</span>
+                            Sync Parties
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn-glass w-100 py-3 border-danger-subtle" @onclick="ReconcileNow">
+                            <span class="fs-4 d-block mb-1">🔄</span>
+                            Force Reconcile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3>Recent System Activity</h3>
+                    <a href="market-data" class="small text-accent text-decoration-none">View All Logs →</a>
+                </div>
+                <div class="fix-log" style="height: 250px;">
+                    @foreach (var msg in LogMessages.Take(10))
+                    {
+                        <div class="log-entry @(msg.Direction.ToLower())">
+                            <span class="log-time">[@msg.Timestamp.ToString("HH:mm:ss")]</span>
+                            <span class="log-dir">@(msg.Direction == "IN" ? "<< " : ">> ")</span>
+                            <span class="log-content">@msg.Content.Substring(0, Math.Min(msg.Content.Length, 80))...</span>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
 
-        <div class="glass-card">
-            <h3>Session Statistics</h3>
-            <div class="stats-list">
-                <div class="stat-item">
-                    <span class="stat-label">Active Session:</span>
-                    <span class="stat-value text-accent">@(FixApp?.ActiveSessionId?.ToString() ?? "NONE")</span>
+        <!-- Session Health -->
+        <div class="side-panel">
+            <div class="glass-card">
+                <h3>Session Health</h3>
+                <div class="stat-list mt-3">
+                    <div class="stat-item">
+                        <span class="stat-label">Sender ID</span>
+                        <span class="stat-value text-accent">CTRLUSE</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Target ID</span>
+                        <span class="stat-value text-accent">STT</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Host</span>
+                        <span class="stat-value">10.200.2.14</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Messages In</span>
+                        <span class="stat-value">@LogMessages.Count(m => m.Direction == "IN")</span>
+                    </div>
+                     <div class="stat-item">
+                        <span class="stat-label">Messages Out</span>
+                        <span class="stat-value">@LogMessages.Count(m => m.Direction == "OUT")</span>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">Messages In:</span>
-                    <span class="stat-value">@(LogMessages?.Count(m => m.Direction == "IN") ?? 0)</span>
+                <hr class="border-secondary" />
+                <div class="small opacity-50 mt-2">
+                    Gateway is currently monitoring the BSE Trading interface. All orders are automatically synced.
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">Messages Out:</span>
-                    <span class="stat-value">@(LogMessages?.Count(m => m.Direction == "OUT") ?? 0)</span>
-                </div>
-                <hr class="border-secondary my-2" />
-                @if (OrderStats != null)
-                {
-                    @foreach (var stat in OrderStats)
-                    {
-                        <div class="stat-item">
-                            <span class="stat-label">@(stat.Key ?? "UNKNOWN"):</span>
-                            <span class="stat-value badge @GetStatusBadgeClass(stat.Key ?? "UNKNOWN")">@stat.Value</span>
-                        </div>
-                    }
-                }
             </div>
         </div>
     </div>
@@ -160,21 +127,17 @@
     [Inject] private IFixMessageLogService? LogService { get; set; }
     [Inject] private IFixActionService? ActionService { get; set; }
     [Inject] private IOrderService? OrderService { get; set; }
+    [Inject] private IOrderReconciliationService? ReconService { get; set; }
     [Inject] private NavigationManager? Navigation { get; set; }
 
     private List<FixMessageEntry> LogMessages = new();
-    private List<PreOrderLive> Orders = new();
-    private List<CompanyPrice> MarketPrices = new();
     private Dictionary<string, int> OrderStats = new();
     private HubConnection? hubConnection;
-    private string? DbError;
+    private bool IsConnected => FixApp?.ActiveSessionId != null;
 
     protected override async Task OnInitializedAsync()
     {
-        if (LogService != null)
-        {
-            LogMessages = LogService.GetRecentMessages().ToList();
-        }
+        if (LogService != null) LogMessages = LogService.GetRecentMessages().Reverse().ToList();
         await RefreshData();
 
         if (Navigation != null)
@@ -185,13 +148,8 @@
 
             hubConnection.On<FixMessageEntry>("ReceiveFixMessage", async (message) =>
             {
-                if (LogMessages != null)
-                {
-                    LogMessages.Insert(0, message);
-                    if (LogMessages.Count > 100) LogMessages.RemoveAt(LogMessages.Count - 1);
-                }
-                
-                // Auto-refresh data on new messages
+                LogMessages.Insert(0, message);
+                if (LogMessages.Count > 50) LogMessages.RemoveAt(LogMessages.Count - 1);
                 await RefreshData();
                 await InvokeAsync(StateHasChanged);
             });
@@ -202,44 +160,25 @@
 
     private async Task RefreshData()
     {
-        if (OrderService == null) return;
-
-        try 
-        {
-            var pending = await OrderService.GetPendingOrdersAsync();
-            Orders = pending.Take(5).ToList();
-            
-            var prices = await OrderService.GetCompanyPricesAsync();
-            MarketPrices = prices.ToList();
-            
-            OrderStats = await OrderService.GetOrderStatsAsync();
-            DbError = null;
-        }
-        catch (Exception ex)
-        {
-            DbError = $"Database error: {ex.Message}";
-        }
+        if (OrderService != null) OrderStats = await OrderService.GetOrderStatsAsync();
     }
 
-    private string GetStatusBadgeClass(string status) => (status ?? "").ToUpper() switch
-    {
-        "MATCHED ORDER" => "bg-success",
-        "REJECTED" => "bg-danger",
-        "OPEN" => "bg-info",
-        "NEW" => "bg-primary",
-        _ => "bg-secondary"
-    };
+    private string GetStat(string status) => OrderStats.TryGetValue(status, out var count) ? count.ToString() : "0";
 
     private async Task RequestSecurityDefs() { if (ActionService != null) await ActionService.RequestSecurityDefinitionsAsync(); }
     private async Task RequestMarketData() { if (ActionService != null) await ActionService.RequestMarketDataAsync("MSFT"); }
     private async Task RequestPartyIDs() { if (ActionService != null) await ActionService.RequestPartyIDsAsync(); }
-    private async Task CheckOrderStatus() { if (ActionService != null) await ActionService.RequestOrderStatusAsync("SAMPLE_ID"); }
+    private async Task ReconcileNow() 
+    { 
+        if (ReconService != null) 
+        {
+            await ReconService.ReconcileOrdersAsync();
+            await RefreshData();
+        }
+    }
 
     public async ValueTask DisposeAsync()
     {
-        if (hubConnection is not null)
-        {
-            await hubConnection.DisposeAsync();
-        }
+        if (hubConnection is not null) await hubConnection.DisposeAsync();
     }
 }

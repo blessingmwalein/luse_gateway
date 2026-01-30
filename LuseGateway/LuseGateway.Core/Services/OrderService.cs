@@ -22,6 +22,36 @@ namespace LuseGateway.Core.Services
             _billingService = billingService;
         }
 
+        public async Task<IEnumerable<PreOrderLive>> GetOrdersAsync(int page = 1, int pageSize = 10, DateTime? fromDate = null, string[]? statuses = null)
+        {
+            var query = _dbContext.PreOrders.AsQueryable();
+
+            if (fromDate.HasValue)
+                query = query.Where(o => o.CreateDate >= fromDate.Value);
+
+            if (statuses != null && statuses.Length > 0)
+                query = query.Where(o => statuses.Contains(o.OrderStatus));
+
+            return await query
+                .OrderByDescending(o => o.OrderNo)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
+        public async Task<int> GetOrderCountAsync(DateTime? fromDate = null, string[]? statuses = null)
+        {
+            var query = _dbContext.PreOrders.AsQueryable();
+
+            if (fromDate.HasValue)
+                query = query.Where(o => o.CreateDate >= fromDate.Value);
+
+            if (statuses != null && statuses.Length > 0)
+                query = query.Where(o => statuses.Contains(o.OrderStatus));
+
+            return await query.CountAsync();
+        }
+
         public async Task<IEnumerable<PreOrderLive>> GetPendingOrdersAsync()
         {
             // Orders marked as OPEN and not yet sent

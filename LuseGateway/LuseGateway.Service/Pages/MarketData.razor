@@ -1,0 +1,117 @@
+@page "/market-data"
+@using LuseGateway.Core.Models
+@using LuseGateway.Core.Services
+@using LuseGateway.Fix.Interfaces
+@using Microsoft.AspNetCore.SignalR.Client
+@implements IAsyncDisposable
+@inject IOrderService OrderService
+@inject IFixMessageLogService LogService
+@inject NavigationManager Navigation
+
+<PageTitle>Market Data | LUSE FIX Gateway</PageTitle>
+
+<div class="fade-in">
+    <h1>Market Data Feed</h1>
+    
+    <div class="row">
+        <div class="col-8">
+            <div class="glass-card">
+                <h3>Price Watch</h3>
+                <div class="order-table-container">
+                    <table class="table table-dark table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Bid</th>
+                                <th>Ask</th>
+                                <th>VWAP</th>
+                                <th>Last Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (MarketPrices == null)
+                            {
+                                <tr><td colspan="5" class="text-center">Loading prices...</td></tr>
+                            }
+                            else
+                            {
+                                @foreach (var price in MarketPrices)
+                                {
+                                    <tr>
+                                        <td class="fw-bold">@price.Company</td>
+                                        <td class="text-success">@price.BestBid?.ToString("N4")</td>
+                                        <td class="text-danger">@price.BestAsk?.ToString("N4")</td>
+                                        <td class="text-accent">@price.VwapPrice?.ToString("N4")</td>
+                                        <td class="small opacity-50">@DateTime.Now.ToString("HH:mm:ss")</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="glass-card">
+                <h3>Decoded Data Stream</h3>
+                <div class="fix-log" style="height: 500px;">
+                    @foreach (var msg in DecodedMessages)
+                    {
+                        <div class="log-entry @(msg.Direction.ToLower())">
+                            <span class="log-time">[@msg.Timestamp.ToString("HH:mm:ss.fff")]</span>
+                            <div class="log-content small mt-1">@FormatFixMessage(msg.Content)</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private IEnumerable<CompanyPrice>? MarketPrices;
+    private List<FixMessageEntry> DecodedMessages = new();
+    private Microsoft.AspNetCore.SignalR.Client.HubConnection? hubConnection;
+
+    protected override async Task OnInitializedAsync()
+    {
+        MarketPrices = await OrderService.GetCompanyPricesAsync();
+        
+        // Load recent snapshots from log
+        DecodedMessages = LogService.GetRecentMessages()
+            .Where(m => m.Content.Contains("35=W") || m.Content.Contains("35=X") || m.Content.Contains("35=d"))
+            .ToList();
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/gatewayHub"))
+            .Build();
+
+        hubConnection.On<FixMessageEntry>("ReceiveFixMessage", async (message) =>
+        {
+            if (message.Content.Contains("35=W") || message.Content.Contains("35=X") || message.Content.Contains("35=d"))
+            {
+                DecodedMessages.Insert(0, message);
+                if (DecodedMessages.Count > 50) DecodedMessages.RemoveAt(DecodedMessages.Count - 1);
+                
+                MarketPrices = await OrderService.GetCompanyPricesAsync();
+                await InvokeAsync(StateHasChanged);
+            }
+        });
+
+        await hubConnection.StartAsync();
+    }
+
+    private string FormatFixMessage(string raw)
+    {
+        // Simple formatter to split by SOH (assuming | or \u0001)
+        return raw.Replace("\u0001", " | ").Replace("|", " |\n  ");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+}

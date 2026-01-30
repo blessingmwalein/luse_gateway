@@ -38,6 +38,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Blessing Mwale/Documents/Projects/LUSE/Gateway/LuseGateway/LuseGateway.Service/Pages/MarketData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFya2V0RGF0YS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Blessing Mwale/Documents/Projects/LUSE/Gateway/LuseGateway/LuseGateway.Service/Pages/Orders.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3JkZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Blessing Mwale/Documents/Projects/LUSE/Gateway/LuseGateway/LuseGateway.Service/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
