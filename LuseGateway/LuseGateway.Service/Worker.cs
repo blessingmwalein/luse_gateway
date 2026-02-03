@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using QuickFix;
 using QuickFix.Transport;
 using QuickFix.Fields;
-using QuickFix.Store;
 using QuickFix.Logger;
+using QuickFix.Store;
+using Microsoft.AspNetCore.SignalR;
 using LuseGateway.Core.Services;
 using LuseGateway.Fix;
 using LuseGateway.Core.Models;
+using LuseGateway.Service.Hubs;
 
 namespace LuseGateway.Service
 {
@@ -20,13 +22,24 @@ namespace LuseGateway.Service
         private readonly ILogger<Worker> _logger;
         private readonly IServiceProvider _serviceProvider;
         private readonly LuseFixApplication _fixApplication;
+        private readonly LuseMessageCracker _cracker;
+        private readonly IHubContext<Hubs.GatewayHub> _hubContext;
         private IInitiator? _initiator;
 
-        public Worker(ILogger<Worker> logger, IServiceProvider serviceProvider, LuseFixApplication fixApplication)
+        public Worker(ILogger<Worker> logger, IServiceProvider serviceProvider, LuseFixApplication fixApplication, LuseMessageCracker cracker, IHubContext<Hubs.GatewayHub> hubContext)
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
             _fixApplication = fixApplication;
+            _cracker = cracker;
+            _hubContext = hubContext;
+
+            // Subscribe to party updates
+            _cracker.PartiesUpdated += async () => 
+            {
+                _logger.LogInformation("Parties updated event received in Worker, broadcasting to SignalR...");
+                await _hubContext.Clients.All.SendAsync("PartiesUpdated");
+            };
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

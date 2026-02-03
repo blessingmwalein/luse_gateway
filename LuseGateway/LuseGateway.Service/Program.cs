@@ -32,6 +32,7 @@ builder.Services.AddDbContext<LuseDbContext>(options =>
 // 3. Core Services
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderReconciliationService, OrderReconciliationService>();
+builder.Services.AddSingleton<IPartyService, PartyService>();
 builder.Services.AddScoped<IBillingService, BillingService>();
 
 // 4. FIX Layer

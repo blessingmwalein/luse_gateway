@@ -19650,8 +19650,8 @@
   <field number='1682' name='MDSecurityTradingStatus' type='INT' />
   <field number='1683' name='MDSubFeedType' type='STRING' />
   <field number='1684' name='MDHaltReason' type='INT' />
-  <field number='1506' name='SideTradeID' type='STRING' />
-  <field number='1507' name='SideOrigTradeID' type='STRING' />
+  <field number='1506' name='NoPartyListResponseTypes' type='NUMINGROUP' />
+  <field number='1507' name='PartyListResponseType' type='INT' />
   <field number='1522' name='DifferentialPrice' type='PRICEOFFSET' />
   <field number='1523' name='TrdAckStatus' type='INT'>
    <value enum='0' description='ACCEPTED' />

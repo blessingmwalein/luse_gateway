@@ -77,8 +77,22 @@ namespace LuseGateway.Service.Services
 
         public Task RequestPartyIDsAsync()
         {
-            // Implementation of PartyIDRequest if needed by the exchange
-            // LUSE typically uses this for broker/trader lists
+            if (_fixApplication.ActiveSessionId == null) return Task.CompletedTask;
+
+            // Using generic message to support custom tags 1506, 1507
+            var request = new QuickFix.Message();
+            request.Header.SetField(new QuickFix.Fields.MsgType("CF"));
+            request.SetField(new QuickFix.Fields.StringField(1505, Guid.NewGuid().ToString("N")));
+            
+            // 1506 NoPartyListResponseTypes = 1
+            request.SetField(new QuickFix.Fields.IntField(1506, 1));
+            
+            // 1507 PartyListResponseType = 1
+            var group = new QuickFix.Group(1506, 1507);
+            group.SetField(new QuickFix.Fields.IntField(1507, 1));
+            request.AddGroup(group);
+
+            Session.SendToTarget(request, _fixApplication.ActiveSessionId);
             return Task.CompletedTask;
         }
     }

@@ -12,6 +12,8 @@ namespace LuseGateway.Fix
         private readonly ILogger<LuseMessageCracker> _logger;
         private readonly IServiceScopeFactory _scopeFactory;
 
+        public event Action? PartiesUpdated;
+
         public LuseMessageCracker(ILogger<LuseMessageCracker> logger, IServiceScopeFactory scopeFactory)
         {
             _logger = logger;
@@ -134,6 +136,61 @@ namespace LuseGateway.Fix
                 _logger.LogError(ex, "Error processing SecurityDefinition");
             }
         }
+        public void OnMessage(PartyDetailsListReport message, SessionID sessionID)
+        {
+            _logger.LogInformation("Received PartyDetailsListReport (CG)");
+            try
+            {
+                using var scope = _scopeFactory.CreateScope();
+                var partyService = scope.ServiceProvider.GetRequiredService<IPartyService>();
+
+                // Using tag 453 (NoPartyIDs)
+                if (((QuickFix.FieldMap)message).IsSetField(453))
+                {
+                    int noPartyIDs = message.GetField(new QuickFix.Fields.NoPartyIDs()).Value;
+                    for (int i = 1; i <= noPartyIDs; i++)
+                    {
+                        var group = new QuickFix.Group(453, 448);
+                        message.GetGroup(i, group);
+                        
+                        string partyId = ((QuickFix.FieldMap)group).IsSetField(448) ? group.GetField(new QuickFix.Fields.PartyID()).Value : "";
+                        string roleStr = ((QuickFix.FieldMap)group).IsSetField(452) ? group.GetField(new QuickFix.Fields.PartyRole()).Value.ToString() : "0";
+                        
+                        string partyName = partyId; 
+                        
+                        // Check for Alt ID Group (1516)
+                        if (((QuickFix.FieldMap)group).IsSetField(1516))
+                        {
+                            var altGroup = new QuickFix.Group(1516, 1517);
+                            group.GetGroup(1, altGroup);
+                            if (((QuickFix.FieldMap)altGroup).IsSetField(1517))
+                            {
+                                partyName = altGroup.GetField(new QuickFix.Fields.StringField(1517)).Value;
+                            }
+                        }
+
+                        var party = new ParaCompany
+                        {
+                            Symbol = partyId,
+                            Company = partyName,
+                            Fnam = $"Role: {roleStr}",
+                            Exchange = "LUSE",
+                            SecurityType = "CS",
+                            DateCreated = DateTime.Now
+                        };
+
+                        partyService.AddTemporaryPartyAsync(party).GetAwaiter().GetResult();
+                    }
+                    
+                    PartiesUpdated?.Invoke();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error processing PartyDetailsListReport (CG)");
+            }
+        }
+
         public void OnMessage(QuickFix.FIXT11.Reject message, SessionID sessionID)
         {
             _logger.LogWarning("FIX Reject received: {Text} (RefSeqNum: {RefSeqNum}, RefTagID: {RefTagID})", 
