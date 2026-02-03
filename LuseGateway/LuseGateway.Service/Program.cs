@@ -18,18 +18,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSignalR();
 
 // 2. Database Configuration
-builder.Services.AddDbContext<LuseDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("LuseDatabase"),
-        sqlServerOptionsAction: sqlOptions =>
-        {
-            sqlOptions.EnableRetryOnFailure(
-                maxRetryCount: 5,
-                maxRetryDelay: TimeSpan.FromSeconds(30),
-                errorNumbersToAdd: null);
-        }));
-
-// Add pooled DbContext factory for singleton services that need database access
+// Use pooled DbContext factory for both scoped and singleton services
 builder.Services.AddPooledDbContextFactory<LuseDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("LuseDatabase"),
@@ -41,7 +30,12 @@ builder.Services.AddPooledDbContextFactory<LuseDbContext>(options =>
                 errorNumbersToAdd: null);
         }));
 
-
+// Register scoped DbContext for services that inject LuseDbContext directly
+builder.Services.AddScoped<LuseDbContext>(provider =>
+{
+    var factory = provider.GetRequiredService<IDbContextFactory<LuseDbContext>>();
+    return factory.CreateDbContext();
+});
 
 // 3. Core Services
 builder.Services.AddScoped<IOrderService, OrderService>();
