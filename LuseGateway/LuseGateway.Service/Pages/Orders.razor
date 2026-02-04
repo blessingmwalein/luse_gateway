@@ -205,56 +205,110 @@
                 </div>
             </div>
 
-            @if (IsLoadingValidation)
-            {
-                <div class="glass-card text-center">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="visually-hidden">Loading exchange status...</span>
-                    </div>
-                    <p class="mt-2 mb-0 small">Fetching exchange status...</p>
-                </div>
-            }
-            else if (ValidationResult != null)
-            {
-                <div class="glass-card">
-                    <h4 class="mb-3 text-accent border-bottom pb-2">Exchange Validation</h4>
-                    <div class="alert @(ValidationResult.IsValid ? "alert-success" : "alert-warning") mb-0">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <strong>@(ValidationResult.IsValid ? "✓ Order Validated" : "⚠ Discrepancies Found")</strong>
-                            <span class="small">@DateTime.Now.ToString("HH:mm:ss")</span>
-                        </div>
-                        @if (!ValidationResult.IsValid)
+
+            <!-- Exchange (ATS) Status Section -->
+            <div class="glass-card">
+                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                    <h4 class="mb-0 text-accent">Exchange (ATS) Status</h4>
+                    <button class="btn btn-sm btn-primary" @onclick="FetchExchangeStatus" disabled="@IsLoadingValidation">
+                        @if (IsLoadingValidation)
                         {
+                            <span class="spinner-border spinner-border-sm me-1"></span>
+                            <span>Fetching...</span>
+                        }
+                        else
+                        {
+                            <span>🔄 Fetch from ATS</span>
+                        }
+                    </button>
+                </div>
+
+                @if (IsLoadingValidation)
+                {
+                    <div class="text-center py-3">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading exchange status...</span>
+                        </div>
+                        <p class="mt-2 mb-0 small">Fetching order status from STT API...</p>
+                    </div>
+                }
+                else if (ValidationResult != null && ValidationResult.ExchangeData != null)
+                {
+                    <!-- Exchange Data Display -->
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="alert @(ValidationResult.IsValid ? "alert-success" : "alert-warning") mb-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <strong>@(ValidationResult.IsValid ? "✓ Synchronized" : "⚠ Discrepancies Detected")</strong>
+                                    <span class="small">Last checked: @DateTime.Now.ToString("HH:mm:ss")</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-6">
+                            <label class="small opacity-50 d-block">Exchange Order ID</label>
+                            <span class="small fw-bold">@(ValidationResult.ExchangeData.ClOrdId ?? "N/A")</span>
+                        </div>
+                        <div class="col-6">
+                            <label class="small opacity-50 d-block">Exchange Status</label>
+                            <span class="status-badge status-@((ValidationResult.ExchangeData.Status ?? "UNKNOWN").ToLower().Replace(" ", "-"))">
+                                @ValidationResult.ExchangeData.Status
+                            </span>
+                        </div>
+                        <div class="col-6">
+                            <label class="small opacity-50 d-block">Original Quantity</label>
+                            <span>@ValidationResult.ExchangeData.OriginalQty</span>
+                        </div>
+                        <div class="col-6">
+                            <label class="small opacity-50 d-block">Filled Quantity</label>
+                            <span class="text-success fw-bold">@ValidationResult.ExchangeData.FilledQty</span>
+                        </div>
+                        <div class="col-6">
+                            <label class="small opacity-50 d-block">Remaining Quantity</label>
+                            <span class="text-warning">@ValidationResult.ExchangeData.RemainingQty</span>
+                        </div>
+                        <div class="col-6">
+                            <label class="small opacity-50 d-block">Exchange Price</label>
+                            <span>@(ValidationResult.ExchangeData.OrderPx?.ToString("N2") ?? "N/A")</span>
+                        </div>
+                    </div>
+
+                    @if (!ValidationResult.IsValid && ValidationResult.ValidationMessages.Any())
+                    {
+                        <div class="mt-3 pt-3 border-top">
+                            <div class="small fw-bold text-warning mb-2">⚠ Discrepancies:</div>
                             <ul class="mb-0 small">
                                 @foreach (var msg in ValidationResult.ValidationMessages)
                                 {
-                                    <li>@msg</li>
+                                    <li class="text-warning">@msg</li>
                                 }
                             </ul>
-                        }
-                        @if (ValidationResult.ExchangeData != null)
+                        </div>
+                    }
+                }
+                else if (ValidationResult != null && ValidationResult.ExchangeData == null)
+                {
+                    <div class="alert alert-danger">
+                        <strong>❌ Failed to fetch exchange data</strong>
+                        @if (ValidationResult.ValidationMessages.Any())
                         {
-                            <div class="mt-2 pt-2 border-top">
-                                <div class="small opacity-75">Exchange Data:</div>
-                                <div class="row g-2 mt-1">
-                                    <div class="col-6">
-                                        <span class="small opacity-50">Status:</span> @ValidationResult.ExchangeData.Status
-                                    </div>
-                                    <div class="col-6">
-                                        <span class="small opacity-50">Qty:</span> @ValidationResult.ExchangeData.OriginalQty
-                                    </div>
-                                    <div class="col-6">
-                                        <span class="small opacity-50">Filled:</span> @ValidationResult.ExchangeData.FilledQty
-                                    </div>
-                                    <div class="col-6">
-                                        <span class="small opacity-50">Remaining:</span> @ValidationResult.ExchangeData.RemainingQty
-                                    </div>
-                                </div>
+                            <div class="mt-2 small">
+                                @foreach (var msg in ValidationResult.ValidationMessages)
+                                {
+                                    <div>@msg</div>
+                                }
                             </div>
                         }
                     </div>
-                </div>
-            }
+                }
+                else
+                {
+                    <div class="text-center py-4 opacity-50">
+                        <p class="mb-0">Click "Fetch from ATS" to retrieve current exchange status</p>
+                    </div>
+                }
+            </div>
+
 
             <div class="glass-card">
                 <h4 class="mb-3 text-accent border-bottom pb-2">Audit History</h4>
@@ -350,12 +404,44 @@
     private async Task ViewDetails(PreOrderLive order)
     {
         SelectedOrder = order;
+        ValidationResult = null;
+        IsLoadingValidation = false;
         ShowDrawer = true;
         OrderHistory = null;
         StateHasChanged();
         if (!string.IsNullOrEmpty(order.OrderNumber))
         {
             OrderHistory = await ReconService.GetOrderHistoryAsync(order.OrderNumber);
+        }
+    }
+
+    private async Task FetchExchangeStatus()
+    {
+        if (SelectedOrder == null || string.IsNullOrEmpty(SelectedOrder.OrderNumber))
+        {
+            return;
+        }
+
+        try
+        {
+            IsLoadingValidation = true;
+            StateHasChanged();
+
+            // Use OrderNumber for lookup
+            ValidationResult = await ReconService.ValidateOrderWithExchangeAsync(SelectedOrder.OrderNumber);
+        }
+        catch (Exception ex)
+        {
+            ValidationResult = new OrderValidationResult
+            {
+                IsValid = false,
+                ValidationMessages = new List<string> { $"Failed to fetch exchange status: {ex.Message}" }
+            };
+        }
+        finally
+        {
+            IsLoadingValidation = false;
+            StateHasChanged();
         }
     }
 
