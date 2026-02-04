@@ -247,7 +247,7 @@
                         
                         <div class="col-6">
                             <label class="small opacity-50 d-block">Exchange Order ID</label>
-                            <span class="small fw-bold">@(ValidationResult.ExchangeData.ClOrdId ?? "N/A")</span>
+                            <span class="small fw-bold">@(SelectedOrder.ExchangeOrderNumber ?? SelectedOrder.OrderNumber ?? "N/A")</span>
                         </div>
                         <div class="col-6">
                             <label class="small opacity-50 d-block">Exchange Status</label>
@@ -269,7 +269,7 @@
                         </div>
                         <div class="col-6">
                             <label class="small opacity-50 d-block">Exchange Price</label>
-                            <span>@(ValidationResult.ExchangeData.OrderPx?.ToString("N2") ?? "N/A")</span>
+                            <span>@ValidationResult.ExchangeData.OrderPx.ToString("N2")</span>
                         </div>
                     </div>
 

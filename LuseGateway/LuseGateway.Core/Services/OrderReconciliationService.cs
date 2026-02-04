@@ -293,11 +293,12 @@ namespace LuseGateway.Core.Services
                 return result;
             }
 
-            if (string.IsNullOrEmpty(preOrder.ExchangeOrderNumber) || 
-                !int.TryParse(preOrder.ExchangeOrderNumber, out var exchangeOrderId))
+
+            // Use OrderNumber directly for API lookup (it matches the exchange order ID)
+            if (!int.TryParse(preOrder.OrderNumber, out var exchangeOrderId))
             {
                 result.IsValid = false;
-                result.ValidationMessages.Add("Order has no exchange order ID");
+                result.ValidationMessages.Add($"Invalid order number format: {preOrder.OrderNumber}");
                 return result;
             }
 
