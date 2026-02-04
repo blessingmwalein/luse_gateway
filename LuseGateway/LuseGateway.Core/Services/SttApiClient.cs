@@ -102,8 +102,8 @@ namespace LuseGateway.Core.Services
                     return null;
                 }
 
-                var orderStatuses = await response.Content.ReadFromJsonAsync<List<SttOrderStatus>>();
-                return orderStatuses?.Count > 0 ? orderStatuses[0] : null;
+                var orderStatus = await response.Content.ReadFromJsonAsync<SttOrderStatus>();
+                return orderStatus;
             }
             catch (Exception ex)
             {
@@ -284,7 +284,17 @@ namespace LuseGateway.Core.Services
                 await EnsureAuthenticatedAsync();
                 var response = await _httpClient.GetAsync("/api/Reports/MarketPrices");
                 response.EnsureSuccessStatusCode();
-                return await response.Content.ReadFromJsonAsync<List<SttMarketPrice>>() ?? new List<SttMarketPrice>();
+                var content = await response.Content.ReadAsStringAsync();
+                
+                try
+                {
+                    return System.Text.Json.JsonSerializer.Deserialize<List<SttMarketPrice>>(content, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<SttMarketPrice>();
+                }
+                catch (System.Text.Json.JsonException)
+                {
+                    var singleItem = System.Text.Json.JsonSerializer.Deserialize<SttMarketPrice>(content, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    return singleItem != null ? new List<SttMarketPrice> { singleItem } : new List<SttMarketPrice>();
+                }
             }
             catch (Exception ex)
             {
@@ -300,7 +310,17 @@ namespace LuseGateway.Core.Services
                 await EnsureAuthenticatedAsync();
                 var response = await _httpClient.GetAsync("/api/Reports/TurnoverVolumeDeals");
                 response.EnsureSuccessStatusCode();
-                return await response.Content.ReadFromJsonAsync<List<SttTurnoverVolumeDeal>>() ?? new List<SttTurnoverVolumeDeal>();
+                var content = await response.Content.ReadAsStringAsync();
+
+                try
+                {
+                    return System.Text.Json.JsonSerializer.Deserialize<List<SttTurnoverVolumeDeal>>(content, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<SttTurnoverVolumeDeal>();
+                }
+                catch (System.Text.Json.JsonException)
+                {
+                    var singleItem = System.Text.Json.JsonSerializer.Deserialize<SttTurnoverVolumeDeal>(content, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    return singleItem != null ? new List<SttTurnoverVolumeDeal> { singleItem } : new List<SttTurnoverVolumeDeal>();
+                }
             }
             catch (Exception ex)
             {
@@ -316,7 +336,17 @@ namespace LuseGateway.Core.Services
                 await EnsureAuthenticatedAsync();
                 var response = await _httpClient.GetAsync("/api/Reports/MarketCaps");
                 response.EnsureSuccessStatusCode();
-                return await response.Content.ReadFromJsonAsync<List<SttMarketCap>>() ?? new List<SttMarketCap>();
+                var content = await response.Content.ReadAsStringAsync();
+
+                try
+                {
+                    return System.Text.Json.JsonSerializer.Deserialize<List<SttMarketCap>>(content, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<SttMarketCap>();
+                }
+                catch (System.Text.Json.JsonException)
+                {
+                    var singleItem = System.Text.Json.JsonSerializer.Deserialize<SttMarketCap>(content, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    return singleItem != null ? new List<SttMarketCap> { singleItem } : new List<SttMarketCap>();
+                }
             }
             catch (Exception ex)
             {
@@ -332,7 +362,17 @@ namespace LuseGateway.Core.Services
                 await EnsureAuthenticatedAsync();
                 var response = await _httpClient.GetAsync("/api/Reports/TradeDailySummary");
                 response.EnsureSuccessStatusCode();
-                return await response.Content.ReadFromJsonAsync<List<SttTradeDailySummary>>() ?? new List<SttTradeDailySummary>();
+                var content = await response.Content.ReadAsStringAsync();
+
+                try
+                {
+                    return System.Text.Json.JsonSerializer.Deserialize<List<SttTradeDailySummary>>(content, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<SttTradeDailySummary>();
+                }
+                catch (System.Text.Json.JsonException)
+                {
+                    var singleItem = System.Text.Json.JsonSerializer.Deserialize<SttTradeDailySummary>(content, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    return singleItem != null ? new List<SttTradeDailySummary> { singleItem } : new List<SttTradeDailySummary>();
+                }
             }
             catch (Exception ex)
             {
