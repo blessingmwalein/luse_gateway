@@ -116,20 +116,19 @@
         </div>
         <div class="drawer-content">
             <div class="glass-card">
-                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                    <h4 class="text-accent mb-0">Information</h4>
-                    <button class="btn-glass py-1 px-2" @onclick="ReconcileSelectedOrder">
-                        <span class="btn-icon">🔄</span> Reconcile with Exchange
-                    </button>
-                </div>
+                <h4 class="mb-3 text-accent border-bottom pb-2">Order Information</h4>
                 <div class="row g-3">
                     <div class="col-6">
-                        <label class="small opacity-50 d-block">Symbol</label>
-                        <span>@SelectedOrder.Symbol</span>
+                        <label class="small opacity-50 d-block">Order Number</label>
+                        <span class="small">@(SelectedOrder.OrderNumber ?? "N/A")</span>
                     </div>
                     <div class="col-6">
                         <label class="small opacity-50 d-block">Exchange ID</label>
-                        <span>@(SelectedOrder.ExchangeOrderNumber ?? "N/A")</span>
+                        <span class="small">@(SelectedOrder.ExchangeOrderNumber ?? "N/A")</span>
+                    </div>
+                    <div class="col-6">
+                        <label class="small opacity-50 d-block">Symbol</label>
+                        <span>@SelectedOrder.Symbol</span>
                     </div>
                     <div class="col-6">
                         <label class="small opacity-50 d-block">Side</label>
@@ -140,6 +139,10 @@
                         <span class="status-badge status-@((SelectedOrder.OrderStatus ?? "UNKNOWN").ToLower().Replace(" ", "-"))">@SelectedOrder.OrderStatus</span>
                     </div>
                     <div class="col-6">
+                        <label class="small opacity-50 d-block">Order Type</label>
+                        <span>@(SelectedOrder.OrderAttribute ?? "N/A")</span>
+                    </div>
+                    <div class="col-6">
                         <label class="small opacity-50 d-block">Quantity</label>
                         <span>@SelectedOrder.Quantity</span>
                     </div>
@@ -147,10 +150,71 @@
                         <label class="small opacity-50 d-block">Price</label>
                         <span>@SelectedOrder.BasePrice.ToString("N2")</span>
                     </div>
+                    <div class="col-6">
+                        <label class="small opacity-50 d-block">Time In Force</label>
+                        <span>@(SelectedOrder.TimeInForce ?? "N/A")</span>
+                    </div>
+                    <div class="col-6">
+                        <label class="small opacity-50 d-block">Order Capacity</label>
+                        <span>@(SelectedOrder.OrderCapacity ?? "N/A")</span>
+                    </div>
+                    @if (!string.IsNullOrEmpty(SelectedOrder.ExpiryDate))
+                    {
+                        <div class="col-6">
+                            <label class="small opacity-50 d-block">Expiry Date</label>
+                            <span class="small">@SelectedOrder.ExpiryDate</span>
+                        </div>
+                    }
+                    @if (SelectedOrder.MatchedPrice.HasValue && SelectedOrder.MatchedPrice.Value > 0)
+                    {
+                        <div class="col-6">
+                            <label class="small opacity-50 d-block">Matched Price</label>
+                            <span class="text-success">@SelectedOrder.MatchedPrice.Value.ToString("N2")</span>
+                        </div>
+                    }
+                    @if (SelectedOrder.MatchedDate.HasValue)
+                    {
+                        <div class="col-6">
+                            <label class="small opacity-50 d-block">Matched Date</label>
+                            <span class="small text-success">@SelectedOrder.MatchedDate.Value.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(SelectedOrder.RejectionReason))
+                    {
+                        <div class="col-12">
+                            <label class="small opacity-50 d-block">Rejection Reason</label>
+                            <span class="text-danger small">@SelectedOrder.RejectionReason</span>
+                        </div>
+                    }
+                    <div class="col-6">
+                        <label class="small opacity-50 d-block">CDS Account</label>
+                        <span class="small">@(SelectedOrder.CdsAccount ?? "N/A")</span>
+                    </div>
+                    <div class="col-6">
+                        <label class="small opacity-50 d-block">Broker Code</label>
+                        <span class="small">@(SelectedOrder.BrokerCode ?? "N/A")</span>
+                    </div>
+                    <div class="col-6">
+                        <label class="small opacity-50 d-block">Created</label>
+                        <span class="small">@(SelectedOrder.CreateDate?.ToString("yyyy-MM-dd HH:mm:ss") ?? "N/A")</span>
+                    </div>
+                    <div class="col-6">
+                        <label class="small opacity-50 d-block">Trader</label>
+                        <span class="small">@(SelectedOrder.Trader ?? "N/A")</span>
+                    </div>
                 </div>
             </div>
 
-            @if (ValidationResult != null)
+            @if (IsLoadingValidation)
+            {
+                <div class="glass-card text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading exchange status...</span>
+                    </div>
+                    <p class="mt-2 mb-0 small">Fetching exchange status...</p>
+                </div>
+            }
+            else if (ValidationResult != null)
             {
                 <div class="glass-card">
                     <h4 class="mb-3 text-accent border-bottom pb-2">Exchange Validation</h4>
@@ -238,6 +302,7 @@
     private PreOrderLive? SelectedOrder;
     private IEnumerable<OrderHistoryEntry>? OrderHistory;
     private OrderValidationResult? ValidationResult;
+    private bool IsLoadingValidation = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -316,9 +381,36 @@
 
     private async Task ReconcileSelectedOrder()
     {
-        if (SelectedOrder != null && !string.IsNullOrEmpty(SelectedOrder.OrderNumber))
+        await AutoFetchExchangeStatus();
+    }
+
+    private async Task AutoFetchExchangeStatus()
+    {
+        if (SelectedOrder == null || string.IsNullOrEmpty(SelectedOrder.ExchangeOrderNumber))
         {
-            ValidationResult = await ReconService.ValidateOrderWithExchangeAsync(SelectedOrder.OrderNumber);
+            return;
+        }
+
+        try
+        {
+            IsLoadingValidation = true;
+            StateHasChanged();
+
+            // Use ExchangeOrderNumber (exchange_orderNumber field) for lookup
+            ValidationResult = await ReconService.ValidateOrderWithExchangeAsync(SelectedOrder.ExchangeOrderNumber);
+        }
+        catch (Exception ex)
+        {
+            // Handle error silently or log it
+            ValidationResult = new OrderValidationResult
+            {
+                IsValid = false,
+                ValidationMessages = new List<string> { $"Failed to fetch exchange status: {ex.Message}" }
+            };
+        }
+        finally
+        {
+            IsLoadingValidation = false;
             StateHasChanged();
         }
     }
