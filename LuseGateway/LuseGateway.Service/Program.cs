@@ -43,6 +43,10 @@ builder.Services.AddScoped<IOrderReconciliationService, OrderReconciliationServi
 builder.Services.AddSingleton<IPartyService, PartyService>();
 builder.Services.AddScoped<IBillingService, BillingService>();
 
+// 3.1 STT Web API Client
+builder.Services.AddHttpClient<ISttApiClient, SttApiClient>();
+builder.Services.AddScoped<ISttApiClient, SttApiClient>();
+
 // 4. FIX Layer
 builder.Services.AddSingleton<LuseMessageCracker>();
 builder.Services.AddSingleton<LuseFixApplication>();

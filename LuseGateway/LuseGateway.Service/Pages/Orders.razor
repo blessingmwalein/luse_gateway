@@ -75,8 +75,11 @@
                             <td>@order.BasePrice.ToString("N2")</td>
                             <td><span class="status-badge status-@((order.OrderStatus ?? "UNKNOWN").ToLower().Replace(" ", "-"))">@order.OrderStatus</span></td>
                             <td class="text-end">
-                                <button class="btn-glass py-1 px-2" @onclick="() => ViewDetails(order)">
+                                <button class="btn-glass py-1 px-2 me-1" @onclick="() => ViewDetails(order)">
                                     <span class="btn-icon">🔍</span> Details
+                                </button>
+                                <button class="btn-glass py-1 px-2" @onclick="() => ReconcileOrder(order)" title="Reconcile with Exchange">
+                                    <span class="btn-icon">🔄</span>
                                 </button>
                             </td>
                         </tr>
@@ -113,7 +116,12 @@
         </div>
         <div class="drawer-content">
             <div class="glass-card">
-                <h4 class="mb-3 text-accent border-bottom pb-2">Information</h4>
+                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                    <h4 class="text-accent mb-0">Information</h4>
+                    <button class="btn-glass py-1 px-2" @onclick="ReconcileSelectedOrder">
+                        <span class="btn-icon">🔄</span> Reconcile with Exchange
+                    </button>
+                </div>
                 <div class="row g-3">
                     <div class="col-6">
                         <label class="small opacity-50 d-block">Symbol</label>
@@ -131,8 +139,58 @@
                         <label class="small opacity-50 d-block">Status</label>
                         <span class="status-badge status-@((SelectedOrder.OrderStatus ?? "UNKNOWN").ToLower().Replace(" ", "-"))">@SelectedOrder.OrderStatus</span>
                     </div>
+                    <div class="col-6">
+                        <label class="small opacity-50 d-block">Quantity</label>
+                        <span>@SelectedOrder.Quantity</span>
+                    </div>
+                    <div class="col-6">
+                        <label class="small opacity-50 d-block">Price</label>
+                        <span>@SelectedOrder.BasePrice.ToString("N2")</span>
+                    </div>
                 </div>
             </div>
+
+            @if (ValidationResult != null)
+            {
+                <div class="glass-card">
+                    <h4 class="mb-3 text-accent border-bottom pb-2">Exchange Validation</h4>
+                    <div class="alert @(ValidationResult.IsValid ? "alert-success" : "alert-warning") mb-0">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <strong>@(ValidationResult.IsValid ? "✓ Order Validated" : "⚠ Discrepancies Found")</strong>
+                            <span class="small">@DateTime.Now.ToString("HH:mm:ss")</span>
+                        </div>
+                        @if (!ValidationResult.IsValid)
+                        {
+                            <ul class="mb-0 small">
+                                @foreach (var msg in ValidationResult.ValidationMessages)
+                                {
+                                    <li>@msg</li>
+                                }
+                            </ul>
+                        }
+                        @if (ValidationResult.ExchangeData != null)
+                        {
+                            <div class="mt-2 pt-2 border-top">
+                                <div class="small opacity-75">Exchange Data:</div>
+                                <div class="row g-2 mt-1">
+                                    <div class="col-6">
+                                        <span class="small opacity-50">Status:</span> @ValidationResult.ExchangeData.Status
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="small opacity-50">Qty:</span> @ValidationResult.ExchangeData.OriginalQty
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="small opacity-50">Filled:</span> @ValidationResult.ExchangeData.FilledQty
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="small opacity-50">Remaining:</span> @ValidationResult.ExchangeData.RemainingQty
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
 
             <div class="glass-card">
                 <h4 class="mb-3 text-accent border-bottom pb-2">Audit History</h4>
@@ -179,6 +237,7 @@
     private bool ShowDrawer = false;
     private PreOrderLive? SelectedOrder;
     private IEnumerable<OrderHistoryEntry>? OrderHistory;
+    private OrderValidationResult? ValidationResult;
 
     protected override async Task OnInitializedAsync()
     {
@@ -242,7 +301,25 @@
 
     private async Task ReconcileAll()
     {
-        await ReconService.ReconcileOrdersAsync();
+        await ReconService.ReconcileOrdersWithSttApiAsync();
         await LoadOrders();
+    }
+
+    private async Task ReconcileOrder(PreOrderLive order)
+    {
+        if (!string.IsNullOrEmpty(order.OrderNumber))
+        {
+            await ReconService.ReconcileSpecificOrderAsync(order.OrderNumber);
+            await LoadOrders();
+        }
+    }
+
+    private async Task ReconcileSelectedOrder()
+    {
+        if (SelectedOrder != null && !string.IsNullOrEmpty(SelectedOrder.OrderNumber))
+        {
+            ValidationResult = await ReconService.ValidateOrderWithExchangeAsync(SelectedOrder.OrderNumber);
+            StateHasChanged();
+        }
     }
 }
