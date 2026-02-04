@@ -39,9 +39,16 @@ namespace LuseGateway.Core.Services
             {
                 _logger.LogInformation("Authenticating with STT API as user: {Username}", username);
 
-                var response = await _httpClient.PostAsync(
-                    $"/api/Token?username={Uri.EscapeDataString(username)}&password={Uri.EscapeDataString(password)}",
-                    null);
+                var loginData = new Dictionary<string, string>
+                {
+                    { "username", username },
+                    { "password", password },
+                    { "grant_type", "password" }
+                };
+
+                var content = new FormUrlEncodedContent(loginData);
+
+                var response = await _httpClient.PostAsync("/api/token", content);
 
                 response.EnsureSuccessStatusCode();
 
@@ -268,6 +275,69 @@ namespace LuseGateway.Core.Services
             {
                 _logger.LogError(ex, "Failed to get server time from STT API");
                 return null;
+            }
+        }
+        public async Task<IEnumerable<SttMarketPrice>> GetMarketPricesAsync()
+        {
+            try
+            {
+                await EnsureAuthenticatedAsync();
+                var response = await _httpClient.GetAsync("/api/Reports/MarketPrices");
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<List<SttMarketPrice>>() ?? new List<SttMarketPrice>();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching market prices report");
+                return new List<SttMarketPrice>();
+            }
+        }
+
+        public async Task<IEnumerable<SttTurnoverVolumeDeal>> GetTurnoverVolumeDealsAsync()
+        {
+            try
+            {
+                await EnsureAuthenticatedAsync();
+                var response = await _httpClient.GetAsync("/api/Reports/TurnoverVolumeDeals");
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<List<SttTurnoverVolumeDeal>>() ?? new List<SttTurnoverVolumeDeal>();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching turnover volume deals report");
+                return new List<SttTurnoverVolumeDeal>();
+            }
+        }
+
+        public async Task<IEnumerable<SttMarketCap>> GetMarketCapsAsync()
+        {
+            try
+            {
+                await EnsureAuthenticatedAsync();
+                var response = await _httpClient.GetAsync("/api/Reports/MarketCaps");
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<List<SttMarketCap>>() ?? new List<SttMarketCap>();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching market caps report");
+                return new List<SttMarketCap>();
+            }
+        }
+
+        public async Task<IEnumerable<SttTradeDailySummary>> GetTradeDailySummariesAsync()
+        {
+            try
+            {
+                await EnsureAuthenticatedAsync();
+                var response = await _httpClient.GetAsync("/api/Reports/TradeDailySummary");
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<List<SttTradeDailySummary>>() ?? new List<SttTradeDailySummary>();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching trade daily summary report");
+                return new List<SttTradeDailySummary>();
             }
         }
     }

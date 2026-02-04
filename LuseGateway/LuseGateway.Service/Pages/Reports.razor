@@ -1,0 +1,271 @@
+@page "/reports"
+@using LuseGateway.Core.Models
+@using LuseGateway.Core.Services
+@inject ISttApiClient SttApiClient
+@inject IJSRuntime JSRuntime
+
+<div class="container-fluid p-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Market Reports</h2>
+            <p class="text-muted mb-0">View and analyze market activity reports from STT exchange</p>
+        </div>
+        <div class="d-flex gap-2">
+            <select class="form-select w-auto" @bind="SelectedReportType">
+                <option value="MarketPrices">Market Prices</option>
+                <option value="TurnoverVolumeDeals">Turnover & Volume</option>
+                <option value="MarketCaps">Market Capitalization</option>
+                <option value="TradeDailySummary">Trade Daily Summary</option>
+            </select>
+            <button class="btn btn-primary" @onclick="LoadReport" disabled="@IsLoading">
+                @if (IsLoading)
+                {
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    <span>Loading...</span>
+                }
+                else
+                {
+                    <i class="bi bi-arrow-clockwise me-2"></i>
+                    <span>Reload Report</span>
+                }
+            </button>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ErrorMessage))
+    {
+        <div class="alert alert-danger d-flex align-items-center mb-4" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <div>@ErrorMessage</div>
+        </div>
+    }
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            @if (IsLoading && (MarketPrices == null && TurnoverReports == null && MarketCaps == null && DailySummaries == null))
+            {
+                <div class="d-flex justify-content-center align-items-center p-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    @if (SelectedReportType == "MarketPrices")
+                    {
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="border-0 ps-3">Symbol</th>
+                                    <th class="border-0">Description</th>
+                                    <th class="border-0 text-end">Open</th>
+                                    <th class="border-0 text-end">High</th>
+                                    <th class="border-0 text-end">Low</th>
+                                    <th class="border-0 text-end">Close</th>
+                                    <th class="border-0 text-end">Volume</th>
+                                    <th class="border-0 text-end">Turnover</th>
+                                    <th class="border-0 text-end pe-3">Deals</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (MarketPrices?.Any() == true)
+                                {
+                                    @foreach (var item in MarketPrices)
+                                    {
+                                        <tr>
+                                            <td class="ps-3 fw-bold">@item.Symbol</td>
+                                            <td>@item.SecurityDescription</td>
+                                            <td class="text-end">@item.OpenPx.ToString("N2")</td>
+                                            <td class="text-end">@item.HighPx.ToString("N2")</td>
+                                            <td class="text-end">@item.LowPx.ToString("N2")</td>
+                                            <td class="text-end">@item.ClosePx.ToString("N2")</td>
+                                            <td class="text-end">@item.Volume.ToString("N0")</td>
+                                            <td class="text-end">@item.Turnover.ToString("N2")</td>
+                                            <td class="text-end pe-3">@item.Deals</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="9" class="text-center py-5 text-muted">
+                                            <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+                                            No market price data available
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else if (SelectedReportType == "TurnoverVolumeDeals")
+                    {
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="border-0 ps-3">Symbol</th>
+                                    <th class="border-0 text-end">Volume</th>
+                                    <th class="border-0 text-end">Turnover</th>
+                                    <th class="border-0 text-end pe-3">Deals</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (TurnoverReports?.Any() == true)
+                                {
+                                    @foreach (var item in TurnoverReports)
+                                    {
+                                        <tr>
+                                            <td class="ps-3 fw-bold">@item.Symbol</td>
+                                            <td class="text-end">@item.Volume.ToString("N0")</td>
+                                            <td class="text-end">@item.Turnover.ToString("N2")</td>
+                                            <td class="text-end pe-3">@item.Deals</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="4" class="text-center py-5 text-muted">
+                                            <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+                                            No turnover data available
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else if (SelectedReportType == "MarketCaps")
+                    {
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="border-0 ps-3">Symbol</th>
+                                    <th class="border-0 text-end">Issued Shares</th>
+                                    <th class="border-0 text-end">Market Price</th>
+                                    <th class="border-0 text-end pe-3">Market Cap</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (MarketCaps?.Any() == true)
+                                {
+                                    @foreach (var item in MarketCaps)
+                                    {
+                                        <tr>
+                                            <td class="ps-3 fw-bold">@item.Symbol</td>
+                                            <td class="text-end">@item.IssuedShares.ToString("N0")</td>
+                                            <td class="text-end">@item.MarketPrice.ToString("N2")</td>
+                                            <td class="text-end pe-3">@item.MarketCapitalization.ToString("N2")</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="4" class="text-center py-5 text-muted">
+                                            <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+                                            No market cap data available
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else if (SelectedReportType == "TradeDailySummary")
+                    {
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="border-0 ps-3">Date</th>
+                                    <th class="border-0 text-end">Total Volume</th>
+                                    <th class="border-0 text-end">Total Turnover</th>
+                                    <th class="border-0 text-end pe-3">Total Deals</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (DailySummaries?.Any() == true)
+                                {
+                                    @foreach (var item in DailySummaries)
+                                    {
+                                        <tr>
+                                            <td class="ps-3 fw-bold">@item.TradeDate.ToShortDateString()</td>
+                                            <td class="text-end">@item.TotalVolume.ToString("N0")</td>
+                                            <td class="text-end">@item.TotalTurnover.ToString("N2")</td>
+                                            <td class="text-end pe-3">@item.TotalDeals</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="4" class="text-center py-5 text-muted">
+                                            <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+                                            No daily summary data available
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private string SelectedReportType { get; set; } = "MarketPrices";
+    private bool IsLoading { get; set; } = false;
+    private string ErrorMessage { get; set; } = string.Empty;
+
+    private IEnumerable<SttMarketPrice>? MarketPrices;
+    private IEnumerable<SttTurnoverVolumeDeal>? TurnoverReports;
+    private IEnumerable<SttMarketCap>? MarketCaps;
+    private IEnumerable<SttTradeDailySummary>? DailySummaries;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadReport();
+    }
+
+    private async Task LoadReport()
+    {
+        IsLoading = true;
+        ErrorMessage = string.Empty;
+        StateHasChanged();
+
+        try
+        {
+            // Reset current data
+            MarketPrices = null;
+            TurnoverReports = null;
+            MarketCaps = null;
+            DailySummaries = null;
+
+            switch (SelectedReportType)
+            {
+                case "MarketPrices":
+                    MarketPrices = await SttApiClient.GetMarketPricesAsync();
+                    break;
+                case "TurnoverVolumeDeals":
+                    TurnoverReports = await SttApiClient.GetTurnoverVolumeDealsAsync();
+                    break;
+                case "MarketCaps":
+                    MarketCaps = await SttApiClient.GetMarketCapsAsync();
+                    break;
+                case "TradeDailySummary":
+                    DailySummaries = await SttApiClient.GetTradeDailySummariesAsync();
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = $"Failed to load report: {ex.Message}";
+        }
+        finally
+        {
+            IsLoading = false;
+            StateHasChanged();
+        }
+    }
+}

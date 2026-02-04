@@ -54,5 +54,25 @@ namespace LuseGateway.Core.Services
         /// Get server time
         /// </summary>
         Task<DateTime?> GetServerTimeAsync();
+
+        /// <summary>
+        /// Get market prices report
+        /// </summary>
+        Task<IEnumerable<SttMarketPrice>> GetMarketPricesAsync();
+
+        /// <summary>
+        /// Get turnover, volume, and deals report
+        /// </summary>
+        Task<IEnumerable<SttTurnoverVolumeDeal>> GetTurnoverVolumeDealsAsync();
+
+        /// <summary>
+        /// Get market capitalization report
+        /// </summary>
+        Task<IEnumerable<SttMarketCap>> GetMarketCapsAsync();
+
+        /// <summary>
+        /// Get trade daily summaries
+        /// </summary>
+        Task<IEnumerable<SttTradeDailySummary>> GetTradeDailySummariesAsync();
     }
 }
