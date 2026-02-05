@@ -283,8 +283,13 @@ namespace LuseGateway.Core.Services
             {
                 await EnsureAuthenticatedAsync();
                 var response = await _httpClient.GetAsync("/api/Reports/MarketPrices");
-                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError("Error fetching market prices report. Status: {StatusCode}, Content: {Content}", response.StatusCode, content);
+                    response.EnsureSuccessStatusCode();
+                }
                 
                 try
                 {
@@ -309,8 +314,13 @@ namespace LuseGateway.Core.Services
             {
                 await EnsureAuthenticatedAsync();
                 var response = await _httpClient.GetAsync("/api/Reports/TurnoverVolumeDeals");
-                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError("Error fetching turnover volume deals report. Status: {StatusCode}, Content: {Content}", response.StatusCode, content);
+                    response.EnsureSuccessStatusCode();
+                }
 
                 try
                 {
@@ -335,8 +345,13 @@ namespace LuseGateway.Core.Services
             {
                 await EnsureAuthenticatedAsync();
                 var response = await _httpClient.GetAsync("/api/Reports/MarketCaps");
-                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError("Error fetching market caps report. Status: {StatusCode}, Content: {Content}", response.StatusCode, content);
+                    response.EnsureSuccessStatusCode();
+                }
 
                 try
                 {
@@ -361,8 +376,13 @@ namespace LuseGateway.Core.Services
             {
                 await EnsureAuthenticatedAsync();
                 var response = await _httpClient.GetAsync("/api/Reports/TradeDailySummary");
-                response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError("Error fetching trade daily summary report. Status: {StatusCode}, Content: {Content}", response.StatusCode, content);
+                    response.EnsureSuccessStatusCode();
+                }
 
                 try
                 {
